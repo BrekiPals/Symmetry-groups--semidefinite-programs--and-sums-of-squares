@@ -9,14 +9,61 @@
 
 \maketitle
 
-\tableofcontents
-
-
 \section{Introduction}
+We will look at a fundamental problem in real algebraic geometry i.e. the existence and computation of a
+representation of a multivariate polynomial as a sum of squares (SOS). In other words, the
+question of finding $p_i \in \R[x], i = 1, \cdots, N$ such that
+
+\[f(x) = \sum_{i=1}^{N}(p_i(x))^2.\]
+
+This problem has applications in many fields of applied mathematics, such as continuous and combinatorial optimization as well as being theoretically interesting. 
+
+
+We will show a method that exploits symmetries in polynomials and semidefinite programming in order to get a reduction in the problem size in 
+order to get faster and more accurate solutions may that be do to numerical conditioning or numerical errors.\todo{Word this better}
+
+
+
+
+
+The paper outlines the theoretical backgrond and gives the reader exaples explaining the definitions step by step in order to present an algorithm that is able to use the
+symetric properties of a polynomial that is invariant with respect to a certain representation and produces a solution to a semidefinite program given certain constraints.
+
+
 \section{Algorithm}
-\section{Prerequisites}
+Here we will present an algorithm that is the result of the paper and later explain certain concepts that we need to define in order to understand the algorithm
+
+\subsection*{Algorithm I}
+
+
+\textbf{Input:} Linear representation $\vartheta$ of a finite group $G$ on $\R^n$.
+
+\begin{enumerate}
+    \item Determine all real irreducible representations of $G$.
+    \item Compute primary and secondary invariants $\theta_i,\mu_j$. 
+    \item For each non-trivial irreducible representation compute the basis $b_1^i,\cdots, b_{r_i}^i$ of the module of equivariants.
+    \item For each irreducible representation $i$ compute the corresponding matrix $\prod_i$.
+\end{enumerate}
+\noindent
+\textbf{Output:} Primary and secondary invariants $\theta,\mu$ and the matricies $\prod_i$.
+
+
+\subsection*{Algorithm II}
+
+\textbf{Input: } Primary and secondary invariants $\theta,\mu$, matricies $\prod_i$ and $f \in \R[\theta]^G$.
+
+\begin{enumerate}
+    \item Rewrite $f$ in fundamental invariants giving $\tilde{f}(\theta,\mu)$.
+    \item For each irreducible representation determine $w_i(\theta)$ and thus the structure of the matrices $S_i\in \R[\theta]$.
+    \item Find a feasible solution of the semidefinite program corresponding to the constraints.
+\end{enumerate}
+\noindent
+\textbf{Output:} SOS matrices $S_i$ providing a generalized sum of squares decomposition of $\tilde{f}$.
+
 \section{Example}
+We will demonstrate the efficacy of this algorithm with an example.
 \section{Conclusion}
+Although it might seem cumbersome to find all the invariants of a representation.... 
 
 \cite{Gatermann_2004}
 
