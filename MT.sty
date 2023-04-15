@@ -1,0 +1,416 @@
+\ProvidesPackage{MT}
+\usepackage{biblatex}
+\usepackage{imakeidx}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{interval}
+\usepackage{tikz}
+\usepackage{tikzpagenodes}
+\usepackage{relsize}
+\usetikzlibrary{positioning}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+	citecolor=blue,
+}
+\usepackage{enumitem}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{chngcntr}
+\usepackage{ifthen}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage[capitalize]{cleveref}
+
+\reversemarginpar
+\@mparswitchfalse
+
+\AtBeginEnvironment{appendices}{\crefalias{chapter}{appendix}}
+
+\DeclareRobustCommand{\stirling}{\genfrac\{\}{0pt}{}}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+\newcommand{\bs}{\mb$\blacksquare$}
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\mailto}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dx}{\mathrm dx}
+\newcommand{\dy}{\mathrm dy}
+\newcommand{\dz}{\mathrm dz}
+\newcommand{\dt}{\mathrm dt}
+\newcommand{\du}{\mathrm du}
+\newcommand{\dv}{\mathrm dv}
+\newcommand{\dw}{\mathrm dx}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\sbeq}{\subseteq}
+\newcommand{\speq}{\supseteq}
+\newcommand{\p}{\fk p}
+\newcommand{\q}{\fk q}
+
+\def\bb#1{\mathbb{#1}}
+\def\fk#1{\mathfrak{#1}}
+\def\cl#1{\mathcal{#1}}
+\def\rm#1{\mathrm{#1}}
+\def\bf#1{\mathbf{#1}}
+
+\DeclareMathOperator*{\ppcm}{ppcm}
+\DeclareMathOperator*{\pgcd}{pgcd}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator*{\lcm}{lcm}
+\DeclareMathOperator*{\argmin}{arg min}
+\DeclareMathOperator*{\rad}{rad}
+\DeclareMathOperator*{\argmax}{arg max}
+\DeclareMathOperator*{\Gal}{Gal}
+\DeclareMathOperator*{\Aut}{Aut}
+\DeclareMathOperator*{\Hom}{Hom}
+\DeclareMathOperator*{\Emb}{Emb}
+\DeclareMathOperator*{\li}{li}
+\DeclareMathOperator*{\Li}{Li}
+\DeclareMathOperator{\norm}{N}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator*{\im}{im}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\com}{com}
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\perm}{perm}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\height}{ht}
+\DeclareMathOperator{\rank}{rank}
+
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\KK}{\mathbb K}
+\newcommand{\PP}{\mathbb P}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\F}{\mathbb F}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\taking}[1]{\xrightarrow{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\sbteq}{\subseteq}
+\newcommand{\spteq}{\supseteq}
+\newcommand{\mb}{\medbreak\smallbreak}
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\sqbra}[1]{\left[#1\right]}
+\newcommand{\robra}[1]{\left(#1\right)}
+\newcommand{\cubra}[1]{\left\{#1\right\}}
+\newcommand{\babra}[1]{\left|#1\right|}
+\newcommand{\psplit}{\cl P_{\text{split}}}
+\newcommand{\vf}{\varphi}
+\newcommand{\T}{\mathsf T}
+\newcommand{\nolim}{\nolimits}
+\newcommand{\prodots}{\cdot\ldots\cdot}
+
+\def\striplastS#1{\striplastSa{#1}#1\end s\end\eend}
+\def\striplastSa#1#2s\end#3\eend{\ifx\end#3\end#1\else#2\fi}
+\newcommand{\vocab}[2]{\textit{#2}\index{#1}}
+\newcommand{\voc}[1]{\textit{#1}}
+
+\usepackage{color}
+\definecolor{defgreen}{rgb}{0.44, 0.73, 0.73}
+\definecolor{propblue}{rgb}{0.02, 0.54, 0.82}
+\colorlet{excolor}{violet}
+
+\usepackage[framemethod=default]{mdframed}
+
+\newmdenv[	skipabove = -2pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = propblue!80!,
+			frametitlebackgroundcolor = propblue!80!, frametitle = Proposition,
+			backgroundcolor = propblue!10]{propbox}
+
+\newmdenv[	skipabove = -2pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = gray!40!,
+			frametitlebackgroundcolor = gray!10!, frametitle = Démonstration,
+			backgroundcolor = white!10]{pfbox}
+			
+\newmdenv[	skipabove = -2pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = gray!40!,
+			frametitlebackgroundcolor = gray!10!, frametitle = Solution,
+			backgroundcolor = white!10]{solbox}
+
+\newmdenv[	skipabove = 0pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = defgreen!40!,
+			frametitlebackgroundcolor = defgreen!40!, frametitle = Définition,
+			backgroundcolor = defgreen!10]{defbox}
+			
+\newmdenv[	skipabove = -2pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = magenta!40!,
+			frametitlebackgroundcolor = magenta!40!, frametitle = Problème,
+			backgroundcolor = magenta!10]{probbox}
+			
+\newmdenv[	skipabove = -2pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = magenta!40!,
+			frametitlebackgroundcolor = magenta!40!, frametitle = Exercice,
+			backgroundcolor = magenta!10]{exobox}
+
+\newmdenv[skipabove = 0pt, skipbelow = 10pt, linewidth = 1pt, frametitle = Remarque]{rmkbox}
+
+\newmdenv[	skipabove = 4pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = propblue!80!,
+			frametitlebackgroundcolor = propblue!80!, frametitle = Proposition,
+			backgroundcolor = propblue!10]{mdprop}
+
+\newmdenv[	skipabove = 4pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = red!50!,
+			frametitlebackgroundcolor = red!50!, frametitle = Theorem,
+			backgroundcolor = red!10]{mdthm}
+
+\newmdenv[	skipabove = 2pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = gray!40!,
+			frametitlebackgroundcolor = gray!10!, frametitle = Proof,
+			backgroundcolor = white!10]{mdpf}
+
+\newmdenv[	skipabove = 4pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = defgreen!40!,
+			frametitlebackgroundcolor = defgreen!40!, frametitle = Definition,
+			backgroundcolor = defgreen!10]{mddef}
+			
+\newmdenv[	skipabove = 4pt, skipbelow = 10pt,
+			linewidth = 1.5pt, linecolor = magenta!40!,
+			frametitlebackgroundcolor = magenta!40!, frametitle = Problem,
+			backgroundcolor = magenta!10]{mdprob}
+
+\newmdenv[linewidth = 2pt,topline = false, bottomline = false, rightline = false, frametitle = Remark]{mdrmk}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\tcbset{skin=enhanced}
+
+\newenvironment{prope}[1][Proposition]{\begin{tcolorbox}[boxrule=1.5pt, colback=propblue!10, colframe=propblue!80, adjusted title=#1, sharp corners, left=8pt, right=8pt]}{\end{tcolorbox}}
+
+\newenvironment{thme}[1][\textbf{Theorem}]{\begin{tcolorbox}[boxrule=1.5pt, colback=red!10, colframe=red!50, adjusted title=#1, sharp corners, left=8pt, right=8pt]}{\end{tcolorbox}}
+
+\newenvironment{pfe}[1][\textbf{Proof}]{\begin{tcolorbox}[enhanced standard, coltitle=black, frame style={color=gray!10, line width=1.5pt, draw=gray!40}, colback=white, adjusted title=#1, sharp corners, left=8pt, right=8pt, breakable=true]}{\end{tcolorbox}}
+
+\newenvironment{defe}[1][\textbf{Definition}]{\begin{tcolorbox}[boxrule=1.5pt, colback=defgreen!10, colframe=defgreen!80, adjusted title=#1, sharp corners, left=8pt, right=8pt]}{\end{tcolorbox}}
+
+\newenvironment{probe}[1][\textbf{Problem}]{\begin{tcolorbox}[boxrule=1.5pt, colback=magenta!10, colframe=magenta!40, adjusted title=#1, sharp corners, left=8pt, right=8pt]}{\end{tcolorbox}}
+
+\newenvironment{rmke}[1][\textbf{Remark}]{\begin{tcolorbox}[enhanced, coltitle=black, frame code={\path[draw=black, line width=2pt]
+	([yshift=-4.5pt]frame.north west) -- ([yshift=10pt]frame.south west);}, colback=white, adjusted title=#1, left=8pt, right=8pt, breakable=true]}{\end{tcolorbox}}
+
+
+\theoremstyle{definition}
+\newtheorem{exe}{Exercise}[section]
+\newtheorem{exse}[exe]{Exercise}
+\newtheorem{exsse}[exe]{Exercise}
+\renewcommand{\theexse}{\theexe$^\dagger$}
+\renewcommand{\theexsse}{\theexe$^\mathlarger{*}$}
+
+\newcounter{prop}
+\numberwithin{prop}{section}
+\newcounter{thm}
+\numberwithin{thm}{section}
+\newcounter{lem}
+\numberwithin{lem}{section}
+\newcounter{cor}
+\numberwithin{cor}{section}
+\newcounter{df}
+\numberwithin{df}{section}
+\newcounter{prob}
+\numberwithin{prob}{section}
+\newcounter{rmk}
+\numberwithin{rmk}{section}
+
+\newcommand{\prop}[3][]{\mb\begin{prope}[\textbf{Proposition \refstepcounter{prop}\label{prop:#2}\theprop}\ifthenelse{\equal{#1}{}}{}{ (#1)}]#3\end{prope}}
+
+\newcommand{\props}[3][]{\mb\begin{prope}[\textbf{Proposition \refstepcounter{prop}\label{prop:#2}\theprop}\ifthenelse{\equal{#1}{}}{}{ (#1)}*]#3\end{prope}}
+
+\newcommand{\thm}[3][]{\mb\begin{thme}[\textbf{Theorem \refstepcounter{thm}\label{thm:#2}\thethm}\ifthenelse{\equal{#1}{}}{}{ (#1)}]#3\end{thme}}
+
+\newcommand{\lem}[3][]{\mb\begin{prope}[\textbf{Lemma \refstepcounter{lem}\label{lem:#2}\thelem}\ifthenelse{\equal{#1}{}}{}{ (#1)}]#3\end{prope}}
+
+\newcommand{\cor}[3][]{\mb\begin{prope}[\textbf{Corollary \refstepcounter{cor}\label{cor:#2}\thecor}\ifthenelse{\equal{#1}{}}{}{ (#1)}]#3\end{prope}}
+
+\newcommand{\cors}[3][]{\mb\begin{prope}[\textbf{Corollary \refstepcounter{cor}\label{cor:#2}\thecor}\ifthenelse{\equal{#1}{}}{}{ (#1)}*]#3\end{prope}}
+
+\newcommand{\pf}[2][]{\mb\begin{pfe}[\textbf{\ifthenelse{\equal{#1}{}}{Proof}{#1}}]#2\smallbreak$\hfill\blacksquare$\end{pfe}}
+
+\newcommand{\sol}[2][]{\mb\begin{pfe}[\textbf{\ifthenelse{\equal{#1}{}}{Solution}{#1}}]#2$\hfill\blacksquare$\end{pfe}}
+
+\newcommand{\df}[3][]{\mb\begin{defe}[\textbf{Definition \refstepcounter{df}\label{df:#2}\thedf}\ifthenelse{\equal{#1}{}}{}{ (#1)}]#3\end{defe}}
+
+\newcommand{\prob}[3][]{\mb\begin{probe}[\textbf{Problem \refstepcounter{prob}\label{prob:#2}\theprob}\ifthenelse{\equal{#1}{}}{}{ (#1)}]#3\end{probe}}
+
+\newcommand{\ex}[3][]{
+	\ifthenelse{\equal{#1}{}}{\begin{exe}}{\begin{exe}[#1] \expandafter\titleav\expandafter{#2}{#1}}\storeblackno\edef\tempex{\theexe}\expandafter\labelav\expandafter{\tempex}{#2}\expandafter\stmtav\expandafter{#2}{#3}\expandafter\hint\expandafter{#2}{}\label{ex:#2}#3\end{exe}
+}
+
+\newcommand{\exsm}[3][]{{\small{\color{excolor}
+	\ifthenelse{\equal{#1}{}}{\begin{exe}}{\begin{exe}[#1] \expandafter\titleav\expandafter{#2}{#1}}\storepurpleno\edef\tempex{\theexe}\expandafter\labelav\expandafter{\tempex}{#2}\expandafter\stmtav\expandafter{#2}{#3}\expandafter\solav\expandafter{#2}{}\label{ex:#2}#3\end{exe}
+}}}
+
+\newcommand{\exs}[3][]{
+	\ifthenelse{\equal{#1}{}}{\begin{exse}}{\begin{exse}[#1] \expandafter\titleav\expandafter{#2}{#1}}\storeblackno\edef\tempex{\theexe}\expandafter\labelav\expandafter{\tempex}{#2}\expandafter\stmtav\expandafter{#2}{#3}\expandafter\solav\expandafter{#2}{}\expandafter\hint\expandafter{#2}{}\label{ex:#2}#3\end{exse}
+}
+
+\newcommand{\exss}[3][]{{\small{\color{excolor}
+	\ifthenelse{\equal{#1}{}}{\begin{exsse}}{\begin{exsse}[#1] \expandafter\titleav\expandafter{#2}{#1}}\storepurpleno\edef\tempex{\theexe}\expandafter\labelav\expandafter{\tempex}{#2}\expandafter\stmtav\expandafter{#2}{#3}\expandafter\solav\expandafter{#2}{}\label{ex:#2}#3\end{exsse}
+}}}
+
+\newcommand{\nex}[4][]{
+	\ex[#1]{#2}{#4}
+	%\ifthenelse{\equal{#1}{}}{\begin{exe}}{\begin{exe}[#1] \expandafter\titleav\expandafter{#2}{#1}}\diff{#3}\storeblackno\edef\tempex{\theexe}\expandafter\labelav\expandafter{\tempex}{#2}\expandafter\stmtav\expandafter{#2}{#4}\expandafter\diffav\expandafter{#2}{#3}\label{ex:#2}#4\end{exe}
+}
+
+\newcommand{\nexs}[4][]{
+	\exs[#1]{#2}{#4}
+	%\ifthenelse{\equal{#1}{}}{\begin{exse}}{\begin{exse}[#1] \expandafter\titleav\expandafter{#2}{#1}}\diff{#3}\storeblackno\edef\tempex{\theexe}\expandafter\labelav\expandafter{\tempex}{#2}\expandafter\stmtav\expandafter{#2}{#4}\expandafter\diffav\expandafter{#2}{#3}\label{ex:#2}#4\end{exse}
+}
+
+\newcommand{\mymark}[1]{\begin{tikzpicture}[remember picture,overlay]
+    \coordinate (here) at (0,0.115);
+      \path (current page text area.west |- here)
+        node[left=2.5pt,inner sep=0pt] {#1};
+\end{tikzpicture}}
+\newcommand{\chili}{$\mathlarger{\mathlarger{\star}}$\hspace*{0.3em}}
+\newcommand{\gim}{\mymark{\chili}}
+\newcommand{\yod}{\mymark{\chili\chili}}
+\newcommand{\kurumi}{\mymark{\chili\chili\chili}}
+
+\newcommand{\diff}[1]{\ifthenelse{\equal{#1}{3}}{\kurumi}{\ifthenelse{\equal{#1}{2}}{\yod}{\ifthenelse{\equal{#1}{1}}{\gim}{}}}}
+
+\newcommand{\rmk}[2]{\mb\vspace{-4pt}\begin{mdrmk}[frametitle=Remark \refstepcounter{rmk}\label{rmk:#1}\thermk]\setlength{\parindent}{0cm}#2\setlength{\parindent}{15pt}\end{mdrmk}}
+
+\crefname{chap}{Chapter}{Chapters}
+\crefname{app}{Appendix}{Appendices}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{df}{Definition}{Definitions}
+\crefname{prob}{Problem}{Problems}
+\crefname{ex}{Exercise}{Exercises}
+\crefname{rmk}{Remark}{Remarks}
+
+\def\solav#1#2{\expandafter\gdef\csname my@data@sol@\detokenize{#1}\endcsname{#2}}
+\def\soluv#1{\csname my@data@sol@\detokenize{#1}\expandafter\endcsname}
+\def\stmtav#1#2{\expandafter\gdef\csname my@data@stmt@\detokenize{#1}\endcsname{#2}}
+\def\stmtuv#1{\csname my@data@stmt@\detokenize{#1}\expandafter\endcsname}
+\def\labelav#1#2{\expandafter\gdef\csname my@data@label@\detokenize{#1}\endcsname{#2}}
+\def\labeluv#1{\csname my@data@label@\detokenize{#1}\expandafter\endcsname}
+\def\rmkav#1#2{\expandafter\gdef\csname my@data@rmk@\detokenize{#1}\endcsname{#2}}
+\def\rmkuv#1{\csname my@data@rmk@\detokenize{#1}\expandafter\endcsname}
+\def\aux#1#2{\expandafter\gdef\csname my@data@aux@\detokenize{#1}\endcsname{#2}}
+\def\auxuv#1{\csname my@data@aux@\detokenize{#1}\expandafter\endcsname}
+\def\exsec#1#2{\expandafter\gdef\csname my@data@exsec@\detokenize{#1}\endcsname{#2}}
+\def\exsecuv#1{\csname my@data@exsec@\detokenize{#1}\expandafter\endcsname}
+\def\titleav#1#2{\expandafter\gdef\csname my@data@title@\detokenize{#1}\endcsname{#2}}
+\def\titleuv#1{\csname my@data@title@\detokenize{#1}\expandafter\endcsname}
+\def\diffav#1#2{\expandafter\gdef\csname my@data@diff@\detokenize{#1}\endcsname{#2}}
+\def\diffuv#1{\csname my@data@diff@\detokenize{#1}\expandafter\endcsname}
+\def\hint#1#2{\expandafter\gdef\csname my@data@hint@\detokenize{#1}\endcsname{#2}}
+\def\hintuv#1{\csname my@data@hint@\detokenize{#1}\expandafter\endcsname}
+
+\newcommand{\exlist}{}
+\newcommand{\purpleexI}{}
+\newcommand{\purpleexII}{}
+\newcommand{\purpleexIII}{}
+\newcommand{\purpleexIV}{}
+\newcommand{\purpleexV}{}
+\newcommand{\purpleexVI}{}
+\newcommand{\purpleexVII}{}
+\newcommand{\purpleexVIII}{}
+\newcommand{\purpleexIX}{}
+\newcommand{\purpleexA}{}
+\newcommand{\purpleexB}{}
+\newcommand{\purpleexC}{}
+
+\newcommand{\blackexI}{}
+\newcommand{\blackexII}{}
+\newcommand{\blackexIII}{}
+\newcommand{\blackexIV}{}
+\newcommand{\blackexV}{}
+\newcommand{\blackexVI}{}
+\newcommand{\blackexVII}{}
+\newcommand{\blackexVIII}{}
+\newcommand{\blackexIX}{}
+\newcommand{\blackexA}{}
+\newcommand{\blackexB}{}
+\newcommand{\blackexC}{}
+
+\newcommand{\solution}[2]{\expandafter\solav\expandafter{#1}{#2}}
+\newcommand{\statement}[2]{\expandafter\stmtav\expandafter{#1}{#2}}
+\newcommand{\remark}[2]{\expandafter\rmkav\expandafter{#1}{#2}}
+
+\newcommand{\printsol}[1]{
+	\ifcsname my@data@exsec@\detokenize{#1}\endcsname
+		\expandafter\subsection\expandafter*\expandafter{\expandafter\exsecuv\expandafter{#1}}
+	\fi
+    \ifcsname my@data@sol@\detokenize{#1}\endcsname
+        \mb\noindent\textbf{\cref{ex:#1}}\ifcsname my@data@diff@\detokenize{#1}\endcsname\expandafter\diff{\expandafter\diffuv\expandafter{#1}}\fi\ifcsname my@data@title@\detokenize{#1}\endcsname{ }(\expandafter\titleuv\expandafter{#1})\fi\textbf{. }\expandafter\stmtuv\expandafter{#1}
+        \mb
+        \sol{\expandafter\soluv\expandafter{#1}}
+    \fi
+	\ifcsname my@data@rmk@\detokenize{#1}\endcsname
+		\expandafter\rmk\expandafter{#1}{\expandafter\rmkuv\expandafter{#1}}
+	\fi
+}
+
+\newcommand{\printhint}[1]{
+	%\ifcsname my@data@aux@\detokenize{#1}\endcsname
+		%\expandafter\section\expandafter{\expandafter\auxuv\expandafter{#1}}
+	%\fi
+    \ifcsname my@data@hint@\detokenize{#1}\endcsname
+        \mb\noindent\textbf{\cref{ex:#1}}\ifcsname my@data@diff@\detokenize{#1}\endcsname\expandafter\diff{\expandafter\diffuv\expandafter{#1}}\fi\ifcsname my@data@title@\detokenize{#1}\endcsname{ }(\expandafter\titleuv\expandafter{#1})\fi\textbf{. }\expandafter\hintuv\expandafter{#1}
+    \fi
+}
+
+\newcommand{\printsolpurple}[1]{
+	\ifthenelse{\equal{#1}{ym|yn iff m|n}}{\section{Størmer's Theorem}}{\ifthenelse{\equal{#1}{bezout Z[X]}}{\section{Bézout's Lemma}}{
+	\ifcsname my@data@aux@\detokenize{#1}\endcsname
+		\expandafter\section\expandafter{\expandafter\auxuv\expandafter{#1}}
+	\fi}}
+    \ifcsname my@data@sol@\detokenize{#1}\endcsname
+        \mb\noindent{\color{excolor}\textbf{\cref{ex:#1}}\ifcsname my@data@title@\detokenize{#1}\endcsname{ }(\expandafter\titleuv\expandafter{#1})\fi\textbf{. }\expandafter\stmtuv\expandafter{#1}}
+        \mb
+        \sol{\expandafter\soluv\expandafter{#1}}
+    \fi
+	\ifcsname my@data@rmk@\detokenize{#1}\endcsname
+		\expandafter\rmk\expandafter{#1}{\expandafter\rmkuv\expandafter{#1}}
+	\fi
+}
+
+\newcommand{\storepurpleno}{\ifthenelse{\equal{\thechapter}1}{\listxadd{\purpleexI}{\theexe}}{\ifthenelse{\equal{\thechapter}2}{\listxadd{\purpleexII}{\theexe}}{\ifthenelse{\equal{\thechapter}3}{\listxadd{\purpleexIII}{\theexe}}{\ifthenelse{\equal{\thechapter}4}{\listxadd{\purpleexIV}{\theexe}}{\ifthenelse{\equal{\thechapter}5}{\listxadd{\purpleexV}{\theexe}}{\ifthenelse{\equal{\thechapter}6}{\listxadd{\purpleexVI}{\theexe}}{\ifthenelse{\equal{\thechapter}7}{\listxadd{\purpleexVII}{\theexe}}{\ifthenelse{\equal{\thechapter}8}{\listxadd{\purpleexVIII}{\theexe}}{\ifthenelse{\equal{\thechapter}9}{\listxadd{\purpleexIX}{\theexe}}{\ifthenelse{\equal{\thechapter}A}{\listxadd{\purpleexA}{\theexe}}{\ifthenelse{\equal{\thechapter}B}{\listxadd{\purpleexB}{\theexe}}{\ifthenelse{\equal{\thechapter}C}{\listxadd{\purpleexC}{\theexe}}{}}}}}}}}}}}}}
+
+\newcommand{\storeblackno}{\ifthenelse{\equal{\thechapter}1}{\listxadd{\blackexI}{\theexe}}{\ifthenelse{\equal{\thechapter}2}{\listxadd{\blackexII}{\theexe}}{\ifthenelse{\equal{\thechapter}3}{\listxadd{\blackexIII}{\theexe}}{\ifthenelse{\equal{\thechapter}4}{\listxadd{\blackexIV}{\theexe}}{\ifthenelse{\equal{\thechapter}5}{\listxadd{\blackexV}{\theexe}}{\ifthenelse{\equal{\thechapter}6}{\listxadd{\blackexVI}{\theexe}}{\ifthenelse{\equal{\thechapter}7}{\listxadd{\blackexVII}{\theexe}}{\ifthenelse{\equal{\thechapter}8}{\listxadd{\blackexVIII}{\theexe}}{\ifthenelse{\equal{\thechapter}9}{\listxadd{\blackexIX}{\theexe}}{\ifthenelse{\equal{\thechapter}A}{\listxadd{\blackexA}{\theexe}}{\ifthenelse{\equal{\thechapter}B}{\listxadd{\blackexB}{\theexe}}{\ifthenelse{\equal{\thechapter}C}{\listxadd{\blackexC}{\theexe}}{}}}}}}}}}}}}}
+
+\newcommand*{\dosol}[1]{
+    \edef\temp{\expandafter\labeluv\expandafter{#1}}
+    \expandafter\printsol\expandafter{\temp}}
+
+\newcommand*{\dopurple}[1]{
+    \edef\temp{\expandafter\labeluv\expandafter{#1}}
+    \expandafter\printsolpurple\expandafter{\temp}}
+
+\newcommand*{\dohint}[1]{
+	\edef\temp{\expandafter\labeluv\expandafter{#1}}
+	\expandafter\printhint\expandafter{\temp}}
