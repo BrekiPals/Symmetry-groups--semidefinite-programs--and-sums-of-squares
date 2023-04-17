@@ -19,15 +19,39 @@ question of finding $p_i \in \R[x], i = 1, \cdots, N$ such that
 This problem has applications in many fields of applied mathematics, such as continuous and combinatorial optimization as well as being theoretically interesting. 
 
 
-We will show a method that exploits symmetries in polynomials and semidefinite programming in order to get a reduction in the problem size in 
-order to get faster and more accurate solutions may that be do to numerical conditioning or numerical errors.\todo{Word this better}
+We will show a method that exploits symmetries in polynomials and semidefinite programming (SDP) in order to get a reduction in the problem size. 
+Two reasons are for this, firstly we get a faster solution since the time complexity of SDF has been shown to be polynomial \todo{do we have to cite this?}, 
+secondly smaller problem size give more accurate solutions may that be do to numerical conditioning or numerical errors.
+
+
+The paper outlines the theoretical background and gives the reader examples explaining the definitions step by step in order to present an algorithm that is able to use the 
+symmetric properties of a polynomial that is invariant with respect to a certain representation and produces a solution to a semidefinite program given certain constraints.
+
+\subsection*{The problem}
 
 
 
+Given a polynomial that has symmetries we want to use semidefinite programming in order to find
+
+We will use representation theory to define a good notion of symmetries. In particular we will look at representations
+$\sigma:G\rightarrow Aut(S_+^N)$ that preserve $\mathcal{S}_+^N$ and are \textit{induced} by a representation $\rho:G\rightarrow GL(\R^N)$, 
+that is 
+\[\sigma(g)(\mathcal{S}_+^N)\subseteq \mathcal{S}_+^N, \forall g\in G , \,\,\, \sigma(g)(X) := \rho(g)^TX\rho(g) \,\,\, X\in \mathcal{S} , g\in G.\]
+
+These representation will be of this kind for most practical instances.
 
 
-The paper outlines the theoretical backgrond and gives the reader exaples explaining the definitions step by step in order to present an algorithm that is able to use the
-symetric properties of a polynomial that is invariant with respect to a certain representation and produces a solution to a semidefinite program given certain constraints.
+
+The paper showed that with these constraints we can actually change coordinates so that all the matrices 
+in the SDP have block diagonal form, the problem therefore collapses into a collection of smaller 
+optimization problems, which are much easier to solve.
+
+
+\begin{definition}
+    Let $S\in \R[\textbf{x}]^{m\times m}$ be a symmetric matrix, and $\textbf{y} = [y_1,\cdots,y_m]$ be new indeterminants. The matrix $S$ is a sum of squares (SOS) matrix if the scalar polynomial $\textbf{y}^TS\textbf{y}$ 
+    is a sum of squares in $\R[\textbf{x},\textbf{y}]$.   
+\end{definition}
+
 
 
 \section{Algorithm}
@@ -45,12 +69,11 @@ Here we will present an algorithm that is the result of the paper and later expl
     \item For each irreducible representation $i$ compute the corresponding matrix $\prod_i$.
 \end{enumerate}
 \noindent
-\textbf{Output:} Primary and secondary invariants $\theta,\mu$ and the matricies $\prod_i$.
-
+\textbf{Output:} Primary and secondary invariants $\theta,\mu$ and the matrices $\prod_i$.
 
 \subsection*{Algorithm II}
 
-\textbf{Input: } Primary and secondary invariants $\theta,\mu$, matricies $\prod_i$ and $f \in \R[\theta]^G$.
+\textbf{Input: } Primary and secondary invariants $\theta,\mu$, matrices $\prod_i$ and $f \in \R[\theta]^G$.
 
 \begin{enumerate}
     \item Rewrite $f$ in fundamental invariants giving $\tilde{f}(\theta,\mu)$.
@@ -59,6 +82,16 @@ Here we will present an algorithm that is the result of the paper and later expl
 \end{enumerate}
 \noindent
 \textbf{Output:} SOS matrices $S_i$ providing a generalized sum of squares decomposition of $\tilde{f}$.
+
+
+
+Algorithm I does the preprocessing for our problem while the second lgor, only having a linear representation as an input
+this means that we can run algorithm I one time and then 
+
+
+une the outputs for finding solution for 
+all polynomials that are invariant with respect to this particular representation.
+
 
 \section{Example}
 We will demonstrate the efficacy of this algorithm with an example.

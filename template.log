@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.1.21)  15 APR 2023 17:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.1.21)  17 APR 2023 12:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -861,7 +861,9 @@ LaTeX Info: Redefining \labelcpageref on input line 2370.
 Package cleveref Info: `amsthm' support loaded on input line 3026.
 Package cleveref Info: always capitalise cross-reference names on input line 7830.
 Package cleveref Info: always capitalise cross-reference names on input line 7852.
-) (C:\Users\Lenovo\AppData\Local\Programs\MiKTeX\tex/latex/mdframed\mdframed.sty
+)
+\c@definition=\count453
+ (C:\Users\Lenovo\AppData\Local\Programs\MiKTeX\tex/latex/mdframed\mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
  (C:\Users\Lenovo\AppData\Local\Programs\MiKTeX\tex/latex/zref\zref-abspage.sty
 Package: zref-abspage 2022-04-07 v2.34 Module abspage for zref (HO)
@@ -871,13 +873,13 @@ Package zref Info: New property list: main on input line 767.
 Package zref Info: New property: default on input line 768.
 Package zref Info: New property: page on input line 769.
 )
-\c@abspage=\count453
+\c@abspage=\count454
 Package zref Info: New property: abspage on input line 65.
 ) (C:\Users\Lenovo\AppData\Local\Programs\MiKTeX\tex/latex/needspace\needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip85
-\c@mdf@globalstyle@cnt=\count454
+\c@mdf@globalstyle@cnt=\count455
 \mdf@skipabove@length=\skip86
 \mdf@skipbelow@length=\skip87
 \mdf@leftmargin@length=\skip88
@@ -952,16 +954,16 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@horizontalspaceofbox=\skip149
 \mdfsubtitleheight=\skip150
 \mdfsubsubtitleheight=\skip151
-\c@mdfcountframes=\count455
+\c@mdfcountframes=\count456
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count456
-\c@mdf@env@i=\count457
-\c@mdf@env@ii=\count458
-\c@mdf@zref@counter=\count459
+\mdf@envdepth=\count457
+\c@mdf@env@i=\count458
+\c@mdf@env@ii=\count459
+\c@mdf@zref@counter=\count460
 Package zref Info: New property: mdf@pagevalue on input line 895.
 ) (C:\Users\Lenovo\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2022/06/24 version 5.1.1 text color boxes
@@ -979,9 +981,9 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@upperbox=\box118
 \tcb@lowerbox=\box119
 \tcb@phantombox=\box120
-\c@tcbbreakpart=\count460
-\c@tcblayer=\count461
-\c@tcolorbox@number=\count462
+\c@tcbbreakpart=\count461
+\c@tcblayer=\count462
+\c@tcolorbox@number=\count463
 \tcb@temp=\box121
 \tcb@temp=\box122
 \tcb@temp=\box123
@@ -1001,20 +1003,20 @@ Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
 \tcb@totalupperbox=\box127
 \tcb@totallowerbox=\box128
 )
-\c@exe=\count463
-\c@prop=\count464
-\c@thm=\count465
-\c@lem=\count466
-\c@cor=\count467
-\c@df=\count468
-\c@prob=\count469
-\c@rmk=\count470
+\c@exe=\count464
+\c@prop=\count465
+\c@thm=\count466
+\c@lem=\count467
+\c@cor=\count468
+\c@df=\count469
+\c@prob=\count470
+\c@rmk=\count471
 )
 
 Package biblatex Warning: Load 'inputenc' before biblatex.
 
-\@quotelevel=\count471
-\@quotereset=\count472
+\@quotelevel=\count472
+\@quotereset=\count473
 (template.aux)
 \openout1 = `template.aux'.
 
@@ -1054,16 +1056,16 @@ Package biblatex Info: Reference section=0 on input line 4.
 Package biblatex Info: Reference segment=0 on input line 4.
 (C:\Users\Lenovo\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count473
+\scratchcounter=\count474
 \scratchdimen=\dimen290
 \scratchbox=\box129
-\nofMPsegments=\count474
-\nofMParguments=\count475
+\nofMPsegments=\count475
+\nofMParguments=\count476
 \everyMPshowfont=\toks52
-\MPscratchCnt=\count476
+\MPscratchCnt=\count477
 \MPscratchDim=\dimen291
-\MPnumerator=\count477
-\makeMPintoPDFobject=\count478
+\MPnumerator=\count478
+\makeMPintoPDFobject=\count479
 \everyMPtoPDFconversion=\toks53
 ) (C:\Users\Lenovo\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1118,11 +1120,13 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 11.
  (C:\Users\Lenovo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 51.
+ [1
 
 {C:/Users/Lenovo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
-LaTeX Warning: Citation 'Gatermann_2004' on page 2 undefined on input line 68.
+LaTeX Warning: Citation 'Gatermann_2004' on page 2 undefined on input line 101.
 
 [2] (template.aux)
 
@@ -1140,17 +1144,17 @@ Package logreq Info: Writing requests to 'template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36709 strings out of 475385
- 738487 string characters out of 2776435
- 1486042 words of memory out of 3000000
- 57528 multiletter control sequences out of 15000+600000
- 480993 words of font info for 61 fonts, out of 8000000 for 9000
+ 36741 strings out of 475385
+ 738990 string characters out of 2776435
+ 1485528 words of memory out of 3000000
+ 57552 multiletter control sequences out of 15000+600000
+ 484773 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  115i,6n,118p,1002b,1136s stack positions out of 10000i,1000n,20000p,200000b,80000s
- <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on template.pdf (2 pages, 130676 bytes).
+ <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on template.pdf (2 pages, 152582 bytes).
 PDF statistics:
- 255 PDF objects out of 1000 (max. 8388607)
- 16 named destinations out of 1000 (max. 500000)
+ 288 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
  45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
