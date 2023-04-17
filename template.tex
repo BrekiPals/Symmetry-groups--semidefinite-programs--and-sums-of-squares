@@ -54,15 +54,35 @@ invariant matrix will be block diagonal enabling us to go from one big problem t
 The paper proves that the solution a SDP which is invariant with respect to a linear representation $\sigma$ of the kind we have discussed and it's sigma SDP outlined above give the same solution. 
 Thus we can restrict our set of feasible matrices from $\mathcal{L}\cap \mathcal{S}_+^N$ to $ X\in\mathcal{F}\cup\mathcal{L}\cap \mathcal{S}_+^N$ making the problem simpler.
 
-Furthermore The paper showed that with these constraints we can actually change coordinates so that all the matrices 
+Furthermore every linear representation of a finite group $G$ has a canonical decomposition as a direct sum of irreducible representations, i.e.
+\[\rho = m_1\vartheta_i\oplus m_2\vartheta_2 \oplus \cdots \oplus m_h\vartheta_h.\]
+The paper showed that with these constraints we can actually find a change of coordinates so that all the matrices 
 in the SDP have block diagonal form, the problem therefore collapses into a collection of smaller 
 optimization problems, which are much easier to solve as outlined below 
 \[F = \min_{X\in\mathcal{L}, X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
 
 Next we look at some invariant theory in order to simplify the problem even further. 
 
-Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$ 
-variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow GL(\R^n),$
+Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$
+variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow GL(\R^n)$, i.e. $f(\textbf{x}) = f(\vartheta(g)\textbf{x}), \forall g\in G$.
+The set of all such invariant polynomials is the invariant ring, denoted by $\R[\textbf{x}]^G$. We could jump to the conclusion that if a $f\in \R[\textbf{x}]^G$ can be written as a 
+sum of squares $f(\textbf{x}) =\sum_{i=1}^{h}(p_i(\textbf{x}))^2$ then the polynomials $p_i$ must also be in $\R[\mathbb{x}]^G$. Unfortunately this turns out not to be true. We can however
+use a technique that allows us to couple together squares so they decompose into invariant components. This means we can write 
+\[f(\textbf{x}) = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right>, \,\,\, P_i\in (\R[\mathbf{x}]^G)^{m_i\times m_i},\]
+where the $Q_i$ are as always positive semidefinite.
+
+
+Furthermore using the Hironaka decomposision of the invariant ring, i.e.
+\[\R[\mathbf{x}]^G = \bigoplus_{j=1}^{t}\eta_j(\textbf{x})\R[\theta_1(\textbf{x}), \cdots, \theta_n(\mathbf{x})]\] 
+where $\theta_i(\mathbf{x})$, $\eta_i(\mathbf{x})$ are called primary and secondary invariants, respectively, 
+we can actually represent $f(\mathbf{x})$ uniquely as a function with the invariants as inputs. i.e.
+
+\[\tilde{f}(\theta,\eta) = \sum_{i=1}^{h}\left<Q_i,\tilde{P}_i(\theta,\eta)\right>, \tilde{P_i} \in (\tilde{T})^{m_i\times m_i}, \tilde{T} = \sum_{i=1}^{h}\eta_j\R[\theta]\],
+where the $Q_i$ are as always positive semidefinite.
+In practice very often the group representations are so-called reflection groups. In this situation the invariant ring is 
+isomorphic to a polynomial ring and the secondary invariants are not needed.
+
+The last 
 
 
 
@@ -76,19 +96,19 @@ Here we will present an algorithm that is the result of the paper and later expl
 
 \begin{enumerate}
     \item Determine all real irreducible representations of $G$.
-    \item Compute primary and secondary invariants $\theta_i,\mu_j$. 
+    \item Compute primary and secondary invariants $\theta_i,\eta_j$. 
     \item For each non-trivial irreducible representation compute the basis $b_1^i,\cdots, b_{r_i}^i$ of the module of equivariants.
-    \item For each irreducible representation $i$ compute the corresponding matrix $\prod_i$.
+    \item For each irreducible representation $i$ compute the corresponding matrix $\Pi_i$.
 \end{enumerate}
 \noindent
-\textbf{Output:} Primary and secondary invariants $\theta,\mu$ and the matrices $\prod_i$.
+\textbf{Output:} Primary and secondary invariants $\theta,\eta$ and the matrices $\prod_i$.
 
 \subsection*{Algorithm II}
 
-\textbf{Input: } Primary and secondary invariants $\theta,\mu$, matrices $\prod_i$ and $f \in \R[\theta]^G$.
+\textbf{Input: } Primary and secondary invariants $\theta,\eta$, matrices $\prod_i$ and $f \in \R[\theta]^G$.
 
 \begin{enumerate}
-    \item Rewrite $f$ in fundamental invariants giving $\tilde{f}(\theta,\mu)$.
+    \item Rewrite $f$ in fundamental invariants giving $\tilde{f}(\theta,\eta)$.
     \item For each irreducible representation determine $w_i(\theta)$ and thus the structure of the matrices $S_i\in \R[\theta]$.
     \item Find a feasible solution of the semidefinite program corresponding to the constraints.
 \end{enumerate}
@@ -115,7 +135,11 @@ Although it might seem cumbersome to find all the invariants of a representation
 \[ \min_{X\in\cup\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow 
 \min_{X\in\mathcal{F}\cup\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow
 \min_{X\in\mathcal{L}, X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>\]
-
+\[f(\mathbf{x}) = \sum_{i= 1}^{r} (p_i(\mathbf{x}))^2 
+                = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right> 
+                = \sum_{i=1}^{h}\left<Q_i,\tilde{P_i}(\mathbf{x})\right>
+                = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i(\theta,\eta)\right> 
+                \rightarrow f_j(\theta) = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i^j(\theta)\right>  \]
 
 \begin{definition}
     Let $S\in \R[\textbf{x}]^{m\times m}$ be a symmetric matrix, and $\textbf{y} = [y_1,\cdots,y_m]$ be new indeterminants. The matrix $S$ is a sum of squares (SOS) matrix if the scalar polynomial $\textbf{y}^TS\textbf{y}$ 
