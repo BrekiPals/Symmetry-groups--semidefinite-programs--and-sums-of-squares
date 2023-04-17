@@ -30,8 +30,6 @@ symmetric properties of a polynomial that is invariant with respect to a certain
 
 \subsection*{The problem}
 
-
-
 Given a polynomial that has symmetries we want to use semidefinite programming in order to find
 
 We will use representation theory to define a good notion of symmetries. In particular we will look at representations
@@ -39,19 +37,32 @@ $\sigma:G\rightarrow Aut(S_+^N)$ that preserve $\mathcal{S}_+^N$ and are \textit
 that is 
 \[\sigma(g)(\mathcal{S}_+^N)\subseteq \mathcal{S}_+^N, \forall g\in G , \,\,\, \sigma(g)(X) := \rho(g)^TX\rho(g) \,\,\, X\in \mathcal{S} , g\in G.\]
 
-These representation will be of this kind for most practical instances.
-
-
-
-The paper showed that with these constraints we can actually change coordinates so that all the matrices 
-in the SDP have block diagonal form, the problem therefore collapses into a collection of smaller 
-optimization problems, which are much easier to solve.
-
-
+These representation will be of this kind for most practical instances. The paper shows that with a convenient change of coordinates every 
+invariant matrix will be block diagonal enabling us to go from one big problem to a couple of smaller ones. 
 \begin{definition}
-    Let $S\in \R[\textbf{x}]^{m\times m}$ be a symmetric matrix, and $\textbf{y} = [y_1,\cdots,y_m]$ be new indeterminants. The matrix $S$ is a sum of squares (SOS) matrix if the scalar polynomial $\textbf{y}^TS\textbf{y}$ 
-    is a sum of squares in $\R[\textbf{x},\textbf{y}]$.   
+    Given a finite group $G$, and an associated linear representation $\sigma:G\rightarrow Aut(\mathcal{S}^N)$, a semidefinite
+    optimization problem of the form $F:=\min_{\mathcal{L}\cap \mathcal{S}_+^N}\left<C,X\right>.$ is called invariant with 
+    respect to $\sigma$, if the set of feasible matrices $\mathcal{L}\cap \mathcal{S}_+^N$ and the cost function $\left<C,X\right>$are invariant with respect to $\sigma$
 \end{definition}
+\begin{definition}
+    We define the fixed-point subspace of $\mathcal{S}^N$ as the subspace of all invariant matrices, 
+    \[\mathcal{F} := \{X\in\mathcal{S}^N | X= \sigma(g)(X)\,\,\, \forall g \in G\}\] 
+    and the associated semidefinite program 
+    \[F_\sigma := \min_{X\in\mathcal{F}\cup\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right>\]
+\end{definition}
+
+The paper proves that the solution a SDP which is invariant with respect to a linear representation $\sigma$ of the kind we have discussed and it's sigma SDP outlined above give the same solution. 
+Thus we can restrict our set of feasible matrices from $\mathcal{L}\cap \mathcal{S}_+^N$ to $ X\in\mathcal{F}\cup\mathcal{L}\cap \mathcal{S}_+^N$ making the problem simpler.
+
+Furthermore The paper showed that with these constraints we can actually change coordinates so that all the matrices 
+in the SDP have block diagonal form, the problem therefore collapses into a collection of smaller 
+optimization problems, which are much easier to solve as outlined below 
+\[F = \min_{X\in\mathcal{L}, X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
+
+Next we look at some invariant theory in order to simplify the problem even further. 
+
+Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$ 
+variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow GL(\R^n),$
 
 
 
@@ -99,7 +110,20 @@ We will demonstrate the efficacy of this algorithm with an example.
 \section{Conclusion}
 Although it might seem cumbersome to find all the invariants of a representation.... 
 
+
+
+\[ \min_{X\in\cup\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow 
+\min_{X\in\mathcal{F}\cup\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow
+\min_{X\in\mathcal{L}, X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>\]
+
+
+\begin{definition}
+    Let $S\in \R[\textbf{x}]^{m\times m}$ be a symmetric matrix, and $\textbf{y} = [y_1,\cdots,y_m]$ be new indeterminants. The matrix $S$ is a sum of squares (SOS) matrix if the scalar polynomial $\textbf{y}^TS\textbf{y}$ 
+    is a sum of squares in $\R[\textbf{x},\textbf{y}]$.   
+\end{definition}
+
 \cite{Gatermann_2004}
+
 
 
 Hello World
