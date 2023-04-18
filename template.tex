@@ -86,7 +86,12 @@ with $\tilde{P_i} \in (\tilde{T})^{m_i\times m_i}$, where $\tilde{T} = \sum_{i=1
 In practice very often the group representations are so-called reflection groups. In this situation the invariant ring is 
 isomorphic to a polynomial ring and the secondary invariants are not needed.
 
-The last 
+By a change of coordinates we can assume that $\tilde{P}_i$ has a special form where each $r_i\times r_i$ subblock is a monomial multiple of the first \textit{principal} $r_i\times r_i$ subblock $\Pi_i$. Then $\tilde{f}$ can be written as 
+\[
+    \tilde{f}(\theta, \eta)=\sum_{i=1}^h\left<S_i(\theta),\Pi_i(\theta,\eta)\right>,
+\]
+where the $S_i$ are SOS matrices. %TODO:Check that we defined this in the course.
+Note that by our construction above, the $\Pi_i$ do not depend on the choice of the polynomial $f$.
 
 
 
@@ -117,7 +122,7 @@ Here we will present an algorithm that is the result of the paper and later expl
     \item Find a feasible solution of the semidefinite program corresponding to the constraints.
 \end{enumerate}
 \noindent
-\textbf{Output:} SOS matrices $S_i$ providing a generalized sum of squares decomposition of $\tilde{f}$.
+\textbf{Output:} SOS matrices $S_i$ providing a generalized sum of squares decomposition of $\tilde{f}$.\\
 
 
 
