@@ -1,14 +1,14 @@
 # Fdb version 3
-["biber template"] 1681807892 "template.bcf" "template.bbl" "template" 1681809243
+["biber template"] 1681807892 "template.bcf" "template.bbl" "template" 1681816142
   "references" 0 -1 0 ""
-  "template.bcf" 1681809242 106561 0ce47100127beac4aac2b5a1478d4f9b "pdflatex"
+  "template.bcf" 1681816111 106561 0ce47100127beac4aac2b5a1478d4f9b "pdflatex"
   (generated)
   "template.blg"
   "template.bbl"
-["pdflatex"] 1681809240 "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.tex" "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.pdf" "template" 1681809243
+["pdflatex"] 1681816109 "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.tex" "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.pdf" "template" 1681816142
   "/etc/texmf/web2c/texmf.cnf" 1632955630 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.aux" 1681809242 2860 71b531bfb811fc89ba0a322381ec1386 ""
-  "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.tex" 1681809240 8951 0cd29ce0c6616db3c53bf53fe28cfe89 ""
+  "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.aux" 1681816111 2860 71b531bfb811fc89ba0a322381ec1386 ""
+  "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.tex" 1681816141 9212 46ce350b4a2f39c2c33354a17c99ac5d ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0500.tfm" 1136768653 3584 0913860e6fa2bdf78ecaf460b391112b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0700.tfm" 1136768653 3584 ca0c423beaacd28d53ddce5a826cd558 ""
@@ -244,17 +244,17 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1632955682 5160710 ecf427ae8fa19139d8691f526e47bb9b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1632955727 2569170 f0695b7ed09bf8545f20414845572701 ""
   "MT.sty" 1681807886 19394 d1a23c150c9e5e1608ae3003f1b5aa97 ""
-  "template.aux" 1681809242 2860 71b531bfb811fc89ba0a322381ec1386 "pdflatex"
+  "template.aux" 1681816111 2860 71b531bfb811fc89ba0a322381ec1386 "pdflatex"
   "template.bbl" 1681807893 0 d41d8cd98f00b204e9800998ecf8427e "biber template"
-  "template.out" 1681809242 178 8441b8b6ce5346296ffc08cda338f5d1 "pdflatex"
-  "template.run.xml" 1681809242 2329 eceba23087ddb044a79e6f62050a998c "pdflatex"
-  "template.tex" 1681809240 8951 0cd29ce0c6616db3c53bf53fe28cfe89 ""
+  "template.out" 1681816111 178 8441b8b6ce5346296ffc08cda338f5d1 "pdflatex"
+  "template.run.xml" 1681816111 2329 eceba23087ddb044a79e6f62050a998c "pdflatex"
+  "template.tex" 1681816141 9212 46ce350b4a2f39c2c33354a17c99ac5d ""
   (generated)
-  "template.bcf"
   "template.run.xml"
-  "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.log"
-  "template.out"
-  "template.pdf"
-  "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.pdf"
   "template.aux"
+  "template.out"
   "template.log"
+  "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.log"
+  "template.pdf"
+  "template.bcf"
+  "/home/simon/Mathe/Cours spécialisé/Algebraic Techniques in Optimization/report/Symmetry-groups--semidefinite-programs--and-sums-of-squares/template.pdf"

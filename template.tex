@@ -30,7 +30,7 @@ symmetric properties of a polynomial that is invariant with respect to a certain
 
 \subsection*{The problem}
 
-Given a polynomial that has symmetries we want to use semidefinite programming in order to find
+Given a polynomial that has symmetries we want to use symmetry reduction techniques to reduce our problem to a smaller semidefinite program.
 
 We will use representation theory to define a good notion of symmetries. In particular we will look at representations
 $\sigma:G\rightarrow Aut(S_+^N)$ that preserve $\mathcal{S}_+^N$ and are \textit{induced} by a representation $\rho:G\rightarrow GL(\R^N)$, 
@@ -41,8 +41,8 @@ These representation will be of this kind for most practical instances. The pape
 invariant matrix will be block diagonal enabling us to go from one big problem to a couple of smaller ones. 
 \begin{definition}
     Given a finite group $G$, and an associated linear representation $\sigma:G\rightarrow Aut(\mathcal{S}^N)$, a semidefinite
-    optimization problem of the form $F:=\min_{\mathcal{L}\cap \mathcal{S}_+^N}\left<C,X\right>.$ is called invariant with 
-    respect to $\sigma$, if the set of feasible matrices $\mathcal{L}\cap \mathcal{S}_+^N$ and the cost function $\left<C,X\right>$are invariant with respect to $\sigma$
+    optimization problem of the form $F^\ast:=\min_{\mathcal{L}\cap \mathcal{S}_+^N}\left<C,X\right>.$ is called invariant with 
+    respect to $\sigma$, if the set of feasible matrices $\mathcal{L}\cap \mathcal{S}_+^N$ and the cost function $F(X)=\left<C,X\right>$ are invariant with respect to $\sigma$
 \end{definition}
 \begin{definition}
     We define the fixed-point subspace of $\mathcal{S}^N$ as the subspace of all invariant matrices, 
@@ -59,14 +59,14 @@ Furthermore every linear representation of a finite group $G$ has a canonical de
 The paper showed that with these constraints we can actually find a change of coordinates so that all the matrices 
 in the SDP have block diagonal form, the problem therefore collapses into a collection of smaller 
 optimization problems, which are much easier to solve as outlined below 
-\[F = \min_{X\in\mathcal{L}, X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
+\[F = \min_{X\in\mathcal{L},~X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
 
 Next we look at some invariant theory in order to simplify the problem even further. 
 
 Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$
-variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow GL(\R^n)$, i.e. $f(\textbf{x}) = f(\vartheta(g)\textbf{x}), \forall g\in G$.
+variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow GL(\R^n)$, i.e. $f(\textbf{x}) = f(\vartheta(g)\textbf{x})$ for all $g\in G$.
 The set of all such invariant polynomials is the invariant ring, denoted by $\R[\textbf{x}]^G$. We could jump to the conclusion that if a $f\in \R[\textbf{x}]^G$ can be written as a 
-sum of squares $f(\textbf{x}) =\sum_{i=1}^{h}(p_i(\textbf{x}))^2$ then the polynomials $p_i$ must also be in $\R[\mathbb{x}]^G$. Unfortunately this turns out not to be true. We can however
+sum of squares $f(\textbf{x}) =\sum_{i=1}^{h}(p_i(\textbf{x}))^2$ then the polynomials $p_i$ must also be in $\R[\mathbf{x}]^G$. Unfortunately this turns out not to be true. We can however
 use a technique that allows us to couple together squares so they decompose into invariant components. This means we can write 
 \[f(\textbf{x}) = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right>,\]
 with $P_i\in (\R[\mathbf{x}]^G)^{m_i\times m_i}$
@@ -78,7 +78,7 @@ Furthermore using the Hironaka decomposition of the invariant ring, i.e.
 where $\theta_i(\mathbf{x})$, $\eta_i(\mathbf{x})$ are called primary and secondary invariants, respectively, 
 we can actually represent $f(\mathbf{x})$ uniquely as a function with the invariants as inputs. i.e.
 
-\[\tilde{f}(\theta,\eta) = \sum_{i=1}^{h}\left<Q_i,\tilde{P}_i(\theta,\eta)\right>, \tilde{P_i} \in (\tilde{T})^{m_i\times m_i}, \tilde{T} = \sum_{i=1}^{h}\eta_j\R[\theta]\],
+\[\tilde{f}(\theta,\eta) = \sum_{i=1}^{h}\left<Q_i,\tilde{P}_i(\theta,\eta)\right>, \tilde{P_i} \in (\tilde{T})^{m_i\times m_i}, \tilde{T} = \sum_{i=1}^{h}\eta_j\R[\theta],\]
 where the $Q_i$ are as always positive semidefinite.
 In practice very often the group representations are so-called reflection groups. In this situation the invariant ring is 
 isomorphic to a polynomial ring and the secondary invariants are not needed.
@@ -119,10 +119,8 @@ Here we will present an algorithm that is the result of the paper and later expl
 
 
 Algorithm I does the preprocessing for our problem while the second one, only having a linear representation as an input
-this means that we can run algorithm I one time and then 
-
-
-une the outputs for finding solution for 
+this means that we can run the first algorithm once and then 
+use the outputs for finding solution for 
 all polynomials that are invariant with respect to this particular representation.
 
 
@@ -150,7 +148,7 @@ Although it might seem cumbersome to find all the invariants of a representation
 \begin{definition}
     A polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
     \[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
-is called $\vartheta-\vartheta_i$-equivariant.
+is called $\vartheta$-$\vartheta_i$-equivariant.
 \end{definition}
 
 \cite{Gatermann_2004}
