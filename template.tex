@@ -84,13 +84,13 @@ we can actually represent $f(\mathbf{x})$ uniquely as a function with the invari
 \[\tilde{f}(\theta,\eta) = \sum_{i=1}^{h}\left<Q_i,\tilde{P}_i(\theta,\eta)\right>,\] 
 with $\tilde{P_i} \in (\tilde{T})^{m_i\times m_i}$, where $\tilde{T} = \sum_{i=1}^{h}\eta_j\R[\theta]$ and the $Q_i$ are as always positive semidefinite.\\
 In practice very often the group representations are so-called reflection groups. In this situation the invariant ring is 
-isomorphic to a polynomial ring and the secondary invariants are not needed.
+isomorphic to a polynomial ring and the secondary invariants are not needed. %TODO: This sentence should go somewhere else, but I haven't figured out where.
 
 By a change of coordinates we can assume that $\tilde{P}_i$ has a special form where each $r_i\times r_i$ subblock is a monomial multiple of the first \textit{principal} $r_i\times r_i$ subblock $\Pi_i$. Then $\tilde{f}$ can be written as 
 \[
     \tilde{f}(\theta, \eta)=\sum_{i=1}^h\left<S_i(\theta),\Pi_i(\theta,\eta)\right>,
 \]
-where the $S_i$ are SOS matrices. %TODO:Check that we defined this in the course.
+where the $S_i$ are SOS matrices. %TODO: Check that we defined SOS matrices in the course.
 Note that by our construction above, the $\Pi_i$ do not depend on the choice of the polynomial $f$.
 
 
@@ -118,7 +118,7 @@ Here we will present an algorithm that is the result of the paper and later expl
 
 \begin{enumerate}
     \item Rewrite $f$ in fundamental invariants giving $\tilde{f}(\theta,\eta)$.
-    \item For each irreducible representation determine $w_i(\theta)$ and thus the structure of the matrices $S_i\in \R[\theta]$.
+    \item For each irreducible representation determine $w_i(\theta)$ and thus the structure of the matrices $S_i\in \R[\theta]$. %TODO: Should probably define $w_i(\theta)$ in section 2
     \item Find a feasible solution of the semidefinite program corresponding to the constraints.
 \end{enumerate}
 \noindent
