@@ -8,3 +8,4 @@
 *.fdm_latexmk
 *.blg
 *.fls
+*fdb_latexmk
