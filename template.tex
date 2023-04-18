@@ -102,11 +102,11 @@ Here we will present an algorithm that is the result of the paper and later expl
     \item For each irreducible representation $i$ compute the corresponding matrix $\Pi_i$.
 \end{enumerate}
 \noindent
-\textbf{Output:} Primary and secondary invariants $\theta,\eta$ and the matrices $\prod_i$.
+\textbf{Output:} Primary and secondary invariants $\theta,\eta$ and the matrices $\Pi_i$.
 
 \subsection*{Algorithm II}
 
-\textbf{Input: } Primary and secondary invariants $\theta,\eta$, matrices $\prod_i$ and $f \in \R[\theta]^G$.
+\textbf{Input: } Primary and secondary invariants $\theta,\eta$, matrices $\Pi_i$ and $f \in \R[\theta]^G$.
 
 \begin{enumerate}
     \item Rewrite $f$ in fundamental invariants giving $\tilde{f}(\theta,\eta)$.
@@ -150,8 +150,17 @@ Although it might seem cumbersome to find all the invariants of a representation
 \begin{definition}
     A polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
     \[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
-is called $\vartheta-\vartheta_i$-equivariant.
+is called $\vartheta$-$\vartheta_i$-equivariant.
 \end{definition}
+
+
+\begin{theorem}
+    For each irreducible representation $\vartheta_i$ the module of $\vartheta$-$\vartheta_i$-equivariants is a
+    free module over the ring in the primary invariants:
+    \[M_i = \R[\theta]\dot\{b_1^i,\cdots,b_{r_i}^i\},\]
+    where $b_{\nu}^i\in \R[\mathbf{x}]^{n_i}$ denote the elements in the module basis and $r_i$ is the rank of the module.
+\end{theorem}
+
 
 \cite{Gatermann_2004}
 
