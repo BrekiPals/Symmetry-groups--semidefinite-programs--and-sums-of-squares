@@ -11,14 +11,16 @@
 \maketitle
 
 \section*{Introduction}
+This is a summary of the article "Symmetry Groups, Semidefinite Programs, and Sums of Squares" \cite{Gatermann_2004} by Gatermann and Parillo.\\
+
 We will look at a fundamental problem in real algebraic geometry i.e. the existence and computation of a
 representation of a multivariate polynomial as a sum of squares (SOS). In other words, the
-question of finding $p_i \in \R[x], i = 1, \cdots, N$ such that
+question of finding $p_i \in \R[\mathbf{x}]$, $i = 1, \ldots, r$ such that
 
 \[
     f(\mathbf{x}) = \sum_{i=1}^{N}(p_i(\mathbf{x}))^2,
 \]
-where $f$ is a polynomial of degree $d$ in $n$ variables $\mathbf{x}=(x_1,\ldots,x_n)$.\\
+for a polynomial $f$ of degree $d$ in $n$ variables $\mathbf{x}=(x_1,\ldots,x_n)$.\\
 This problem has applications in many fields of applied mathematics, such as continuous and combinatorial optimization as well as being theoretically interesting. 
 One particular application is in minimization of multivariate polynomials
 \[
@@ -31,7 +33,7 @@ We can relax this problem to find
 \]
 which gives us a lower bound for $f^\ast$, and is efficiently solvable by its well-known representation as a semidefinite program (SDP).\\
 
-The methods we present exploit symmetries in polynomials and semidefinite programming in order to get a reduction in the problem size for this latter problem. 
+The methods we present exploit symmetries in polynomials and semidefinite programming in order to get a reduction in the problem size for the SOS problem. 
 The main ideas are to
 \begin{itemize}
     \item only consider invariant matrices in the feasible region, and to
@@ -48,7 +50,7 @@ Our summary is divided into multiple sections:
 At first, we take a closer look at the ideas that make everything work. We do this by first focussing on a general invariant SDP, where we can make simplifications using the representation theory of finite groups. Then we consider more closely the problem of representing a polynomial as a sum of squares, where the methodology is closer to invariant theory.
 Next, we present a concrete algorithm to solve for $f^{SOS}$ and obtain a certificate of the non-negativity of $f(\mathbf{x})-f^{SOS}$, complete with an example. Lastly, we summarize the possible computational savings.\\%TODO: Check if this is still up to date when we print.
 
-\subsection*{Representation Theory}
+\section*{Representation Theory}
 
 Given a polynomial that has symmetries we want to use symmetry reduction techniques to reduce our problem to a smaller semidefinite program.
 
@@ -85,16 +87,18 @@ We end this section with a road map of reduction of complexity:
 \[\min_{x\in\R^n}f(\mathbf{x}) \rightarrow \max_{f(\mathbf{x})-\lambda\in \Sigma} \lambda \rightarrow\min_{X\in\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow 
 \min_{X\in\mathcal{F}\cap\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow
 \min_{X\in\mathcal{L}, X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>\]
-\subsection*{Invariant theory}
+
+\section*{Invariant theory}
 We will now look at some invariant theory in order to compute everything in invariant polynomials instead of the original variables.
 
 Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$
 variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow \mathrm{GL}(\R^n)$, i.e. $f(\textbf{x}) = f(\vartheta(g)\textbf{x})$ for all $g\in G$.
-The set of all such invariant polynomials is the invariant ring, denoted by $\R[\textbf{x}]^G$. We could jump to the conclusion that if a $f\in \R[\textbf{x}]^G$ can be written as a 
-sum of squares $f(\textbf{x}) =\sum_{i=1}^{h}(p_i(\textbf{x}))^2$ then the polynomials $p_i$ must also be in $\R[\mathbf{x}]^G$. Unfortunately this turns out not to be true. We can however
+The set of all such invariant polynomials is the invariant ring, denoted by $\R[\textbf{x}]^G$. We could jump to the conclusion that if $f\in \R[\textbf{x}]^G$ can be written as a 
+sum of squares $f(\textbf{x}) =\sum_{i=1}^{h}(p_i(\textbf{x}))^2$, then the polynomials $p_i$ must also be in $\R[\mathbf{x}]^G$. Unfortunately this turns out not to be true. We can however
 use a technique that allows us to couple together squares so they decompose into invariant components.
 
-First we note that if we can write $f$ as a sum of squares then we can express it as $f(\textbf{x}) = z^TQz \left<Q,zz^T\right>$ and if we assume that $f\in \R[\mathbf{x}]^G$ is an invariant polynomial and use methods described in the previous section we can actually write it as 
+First we note that if we can write $f$ as a sum of squares then we can express it as $f(\textbf{x}) = Y^TAY =\left<A,YY^T\right>$, where $Y=\begin{pmatrix}1\\x_1\\\vdots\\x_n^d\end{pmatrix}$ is a vector of monomials and $A$ is a positive semidefinite matrix. 
+If we further assume that $f\in \R[\mathbf{x}]^G$ is an invariant polynomial, then $A$ will be an invariant matrix and using the methods described in the previous section we can actually write it as 
 \[f(\textbf{x}) = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right>,\]
 with $P_i\in (\R[\mathbf{x}]^G)^{m_i\times m_i}$
 and the $Q_i$ are as always positive semidefinite.  
@@ -119,7 +123,7 @@ where $b_{\nu}^i\in \R[\mathbf{x}]^{n_i}$ denote the elements in the module basi
 
 By this change of coordinates we can assume that $\tilde{P}_i$ has the special form 
 \[
-    \tilde{P}_i(\theta,\eta)=\Pi_i(\theta,\eta)\otimes w_i(\theta) w_i(\theta)^T,
+    \tilde{P}_i(\theta,\eta) = w_i(\theta) w_i(\theta)^T \otimes \Pi_i(\theta,\eta),
 \]
 i.e. each $r_i\times r_i$ sub-block is a monomial multiple of the first \textit{principal} $r_i\times r_i$ sub-block $\Pi_i$ and $w_i(\theta)$ is a vector of monomials in $\theta$. Then $\tilde{f}$ can be written as 
 \[
@@ -137,7 +141,7 @@ Once again we conclude the section with a road map:
                 \rightarrow f_j(\theta) = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i^j(\theta)\right> . \]
 
 \section*{Algorithm}
-Here we will present an outline of two algorithms presented in the paper
+Here we will present an outline of two algorithms presented in the paper.
 \subsection*{Algorithm I}
 
 
@@ -202,10 +206,10 @@ Let's execute algorithm I:
     
     \item Rewriting our symmetry-adapted basis in terms of $\theta$ we compute $P_i=\sum_{j=1}^{n_i} v_{ij}v_{ij}^T$ to be
     \begin{align*}
-        P_1&=\begin{pmatrix}1&\theta_1\\\theta_1&\theta_1^2\end{pmatrix}&
-        P_3&=\begin{pmatrix}\theta_2\end{pmatrix}\\
-        P_4&=\begin{pmatrix}\theta_1^2-4\theta_2\end{pmatrix}&
-        P_5&=\begin{bmatrix}\Pi_5&\theta_1\Pi_5\\\theta_1\Pi_5&\theta_1^2\Pi_5\end{bmatrix}
+        \tilde{P}_1&=\begin{pmatrix}1&\theta_1\\\theta_1&\theta_1^2\end{pmatrix}&
+        \tilde{P}_3&=\begin{pmatrix}\theta_2\end{pmatrix}\\
+        \tilde{P}_4&=\begin{pmatrix}\theta_1^2-4\theta_2\end{pmatrix}&
+        \tilde{P}_5&=\begin{bmatrix}\Pi_5&\theta_1\Pi_5\\\theta_1\Pi_5&\theta_1^2\Pi_5\end{bmatrix}
     \end{align*}
     where $\Pi_5=\begin{pmatrix}\theta_1&\theta_1^2-2\theta_2\\\theta_1^2-2\theta_2&\theta_1(\theta_1^2-3\theta_2)\end{pmatrix}$. In particular, $\Pi_1=1$,  $\Pi_3=P_3$ and $\Pi_4=P_4$.\\
     Note that we do not ever need to care about $i=2$ because $\vartheta_2$ does not occur in $\vartheta$. This is an accident which can only happen in low enough degrees.\\
@@ -219,7 +223,7 @@ Let
 \[
     f(x,y)=x^6+y^6-x^4y^2-y^4x^2-x^4-y^4-x^2-y^2+3x^2y^2+1
 \]
-and note that this is $G$-invariant, thus we can apply algorithm II:
+and note that this is $G$-invariant with $f^{SOS}=-\frac{3825}{4096}$ thus we can apply algorithm II to $f(x,y)-f^{SOS}$:
 \begin{enumerate}
     \item Rewrite $f$ in terms of $\theta_1$ and $\theta_2$:
     \[
@@ -228,7 +232,15 @@ and note that this is $G$-invariant, thus we can apply algorithm II:
 
     \item From the results of algorithm I, we see that $w_2=w_3=w_4=1$, while $w_1=w_5=\begin{pmatrix}1\\\theta_1\end{pmatrix}$.
     
-    \item By solving the SDP's, we find that $f^{SOS}=-\frac{3825}{4096}$.
+    \item By solving the SDP's, we find 
+    \begin{align*}
+        S_1=\begin{pmatrix}\frac{7921}{4096}-\frac{89}{64}\theta_1+\frac{1}{4}\theta_1^2\end{pmatrix} &&
+        S_5=\begin{pmatrix}\theta_1^2+\frac54\theta_1+\frac{25}{64}&-\frac54-2\theta_1\\-\frac54-2\theta_1&4\end{pmatrix}
+    \end{align*}
+    and indeed, we check that
+    \[
+        \tilde{f}(\theta_1,\theta_2)=\left<S_1,\Pi_1\right>+\left<S_5,\Pi_5\right>.
+    \] 
 \end{enumerate}
 
 \section*{Conclusion}
