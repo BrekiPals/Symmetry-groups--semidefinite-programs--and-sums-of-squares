@@ -117,7 +117,11 @@ where $b_{\nu}^i\in \R[\mathbf{x}]^{n_i}$ denote the elements in the module basi
 \[\begin{bmatrix}v_{i1}\\ \vdots \\ v_{in_i}\end{bmatrix}= \left\{1,\theta_1,\cdots, \theta_n,\theta_1^2,\cdots\right\}\cdot\left\{b_1^i,\cdots,b_{r_i}^i\right\}.\]
 
 
-By this change of coordinates we can assume that $\tilde{P}_i$ has a special form where each $r_i\times r_i$ sub-block is a monomial multiple of the first \textit{principal} $r_i\times r_i$ sub-block $\Pi_i$. Then $\tilde{f}$ can be written as 
+By this change of coordinates we can assume that $\tilde{P}_i$ has the special form 
+\[
+    \tilde{P}_i(\theta,\eta)=\Pi_i(\theta,\eta)\otimes w_i(\theta) w_i(\theta)^T,
+\]
+i.e. each $r_i\times r_i$ sub-block is a monomial multiple of the first \textit{principal} $r_i\times r_i$ sub-block $\Pi_i$ and $w_i(\theta)$ is a vector of monomials in $\theta$. Then $\tilde{f}$ can be written as 
 \[
     \tilde{f}(\theta, \eta)=\sum_{i=1}^h\left<S_i(\theta),\Pi_i(\theta,\eta)\right>,
 \]
