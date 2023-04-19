@@ -29,15 +29,23 @@ We can relax this problem to find
 \[
     f^{SOS}=\max_{f(x)-\lambda \text{ is SOS}}\lambda,
 \]
-which gives us a lower bound for $g^\ast$.\\
+which gives us a lower bound for $g^\ast$, and is efficiently solvable by its well-known representation as a semidefinite program (SDP).\\
 
-The methods we present exploit symmetries in polynomials and semidefinite programming (SDP) in order to get a reduction in the problem size for this latter problem. We want to do this for two reasons: Firstly, we get a faster solution since the time complexity of SDP has been shown to be polynomial \todo{do we have to cite this?}. Secondly, smaller problem size give more accurate solutions may that be due to numerical conditioning or numerical errors.\\
+The methods we present exploit symmetries in polynomials and semidefinite programming in order to get a reduction in the problem size for this latter problem. 
+The main ideas are to
+\begin{itemize}
+    \item only consider invariant matrices in the feasible region, and to
+    \item compute everything in invariants instead of the original variables.
+\end{itemize}
+Both of these lead to reductions in problem size.
+We want to do this for two reasons: Firstly, we reduce the computational burden and secondly, smaller problem size leads to more accurate solutions may that be due to numerical conditioning or numerical errors.\\
 
 The paper outlines the theoretical background and gives the reader examples explaining the definitions step by step in order to present an algorithm that is able to use the 
 symmetric properties of a polynomial that is invariant with respect to a certain representation and produces a solution to a semidefinite program given certain constraints.\\
 
+
 Our summary is divided into multiple sections: 
-At first, we give a closer look into the ideas that make everything work. We do this by first focussing on a general symmetric SDP. Then we consider more closely the problem of representing a polynomial as a sum of squares.
+At first, we take a closer look at the ideas that make everything work. We do this by first focussing on a general invariant SDP, where we can make simplifications using the representation theory of finite groups. Then we consider more closely the problem of representing a polynomial as a sum of squares, where the methodology is closer to invariant theory.
 Next, we present a concrete algorithm to solve for $f^{SOS}$ and obtain a certificate of the non-negativity of $f(x)-f^{SOS}$, complete with an example. Lastly, we summarize the possible computational savings.\\%TODO: Check if this is still up to date when we print.
 
 \section{Math/Ideas/Methods/}
@@ -53,7 +61,7 @@ that is
     \item $\sigma(g)(X) := \rho(g)^TX\rho(g)$ for all $X\in \mathcal{S} , g\in G.$
 \end{itemize}
 
-If we have a \textit{symmetric} semidefinite program 
+If we have an \textit{invariant} semidefinite program 
 \[
     F^\ast=\min_{X\in\mathcal{L}\cap\mathcal{S}_+^N}F(X),
 \]
