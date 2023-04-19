@@ -52,45 +52,58 @@ which is to say that $F$ is $\sigma$-invariant and $\mathcal{L}$ is $\sigma$-sta
 
 Thus we can restrict our set of feasible matrices from $\mathcal{L}\cap \mathcal{S}_+^N$ to $ X\in\mathcal{F}\cup\mathcal{L}\cap \mathcal{S}_+^N$ making the problem simpler.
 
-With a convenient change of coordinates into a \textit{symmetry-adapted} basis every invariant matrix will be block diagonal. This comes from the fact that every linear representation of a finite group $G$ over $\R$ has a canonical decomposition as a direct sum of irreducible representations, i.e.
-\[\rho = m_1\vartheta_i\oplus m_2\vartheta_2 \oplus \cdots \oplus m_h\vartheta_h.\]
-together with Schur's lemma.
+With a convenient change of coordinates into a \textit{symmetry-adapted} basis every invariant matrix will be block diagonal. This comes from the fact that every linear representation of a finite group $G$ over $\R$ has a canonical decomposition as a direct sum of irreducible representations and a corresponding decomposition of $\R^N$, i.e.
+
+\[\rho = m_1\vartheta_i\oplus m_2\vartheta_2 \oplus \cdots \oplus m_h\vartheta_h, \quad \quad \R^N = V_1\oplus V_2 \cdots \oplus V_h,.\]
+together with Schur's lemma. 
+On the level of vector spaces the we have a corresponding composition
+
 
 The problem therefore collapses into a collection of smaller 
 optimization problems, which are much easier to solve as outlined below 
 \[F^\ast = \min_{X\in\mathcal{L},~X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
 
+
 \subsection*{Invariant theory}
-Next we look at some invariant theory in order to simplify the problem even further. 
+We will now look at some invariant theory in order to simplify the problem even further. 
+
+A polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
+\[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
+is called $\vartheta$-$\vartheta_i$-equivariant.
 
 Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$
 variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow \mathrm{GL}(\R^n)$, i.e. $f(\textbf{x}) = f(\vartheta(g)\textbf{x})$ for all $g\in G$.
 The set of all such invariant polynomials is the invariant ring, denoted by $\R[\textbf{x}]^G$. We could jump to the conclusion that if a $f\in \R[\textbf{x}]^G$ can be written as a 
 sum of squares $f(\textbf{x}) =\sum_{i=1}^{h}(p_i(\textbf{x}))^2$ then the polynomials $p_i$ must also be in $\R[\mathbf{x}]^G$. Unfortunately this turns out not to be true. We can however
-use a technique that allows us to couple together squares so they decompose into invariant components. This means we can write 
+use a technique that allows us to couple together squares so they decompose into invariant components.
+
+First we note that if we can write $f$ as a sum of squares then we can express it as $f(\textbf{x}) = z^TQz \left<Q,zz^T\right>$ and if we assume that $f\in \R[\mathbf{x}]^G$ is an invariant polynomial and use methods described in the previous section we can actually write it as 
 \[f(\textbf{x}) = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right>,\]
 with $P_i\in (\R[\mathbf{x}]^G)^{m_i\times m_i}$
-where the $Q_i$ are as always positive semidefinite.
+and the $Q_i$ are as always positive semidefinite.  
 
-
-Furthermore using the Hironaka decomposition of the invariant ring, i.e.
+Furthermore we can use the so called Hironaka decomposition of the invariant ring, i.e.
 \[\R[\mathbf{x}]^G = \bigoplus_{j=1}^{t}\eta_j(\textbf{x})\R[\theta_1(\textbf{x}), \cdots, \theta_n(\mathbf{x})]\] 
-where $\theta_i(\mathbf{x})$, $\eta_i(\mathbf{x})$ are called primary and secondary invariants, respectively, 
-we can actually represent $f(\mathbf{x})$ uniquely as a function with the invariants as inputs. i.e.
+where $\theta_i(\mathbf{x})$, $\eta_i(\mathbf{x})$ are called primary and secondary invariants, respectively, in order to represent $f(\mathbf{x})$ uniquely as a function with the invariants as inputs. i.e.
 
 \[\tilde{f}(\theta,\eta) = \sum_{i=1}^{h}\left<Q_i,\tilde{P}_i(\theta,\eta)\right>,\] 
 with $\tilde{P_i} \in (\tilde{T})^{m_i\times m_i}$, where $\tilde{T} = \sum_{i=1}^{h}\eta_j\R[\theta]$ and the $Q_i$ are as always positive semidefinite.\\
+
 In practice very often the group representations are so-called reflection groups. In this situation the invariant ring is 
 isomorphic to a polynomial ring and the secondary invariants are not needed. %TODO: This sentence should go somewhere else, but I haven't figured out where.
 
-By a change of coordinates we can assume that $\tilde{P}_i$ has a special form where each $r_i\times r_i$ subblock is a monomial multiple of the first \textit{principal} $r_i\times r_i$ subblock $\Pi_i$. Then $\tilde{f}$ can be written as 
+Next we want to exploit the algebraic structure of the module of equivariants, that is for each irreducible representation $\vartheta_i$, tha module $M_i$ of $\vartheta$-$\vartheta_i$-equivariants is a free module over the ring in the primary invariants:
+\[M_i = \R[\theta]\dot\{b_1^i,\cdots,b_{r_i}^i\},\]
+where $b_{\nu}^i\in \R[\mathbf{x}]^{n_i}$ denote the elements in the module basis and $r_i$ is the rank of the module.  In addition to this we choose a special vector space basis $v_i(\mathbf{x})$ of $V_i$ determined by the module basis, such that
+\[\begin{bmatrix}v_{i1}\\ \vdots \\ v_{in_i}\end{bmatrix}= \left\{1,\theta_1,\cdots, \theta_n,\theta_1^2,\cdots\right\}\cdot\left\{b_1^i,\cdots,b_{r_i}^i\right\}.\]
+
+
+By this change of coordinates we can assume that $\tilde{P}_i$ has a special form where each $r_i\times r_i$ subblock is a monomial multiple of the first \textit{principal} $r_i\times r_i$ subblock $\Pi_i$. Then $\tilde{f}$ can be written as 
 \[
     \tilde{f}(\theta, \eta)=\sum_{i=1}^h\left<S_i(\theta),\Pi_i(\theta,\eta)\right>,
 \]
-where the $S_i$ are SOS matrices. %TODO: Check that we defined SOS matrices in the course.
-Note that by our construction above, the $\Pi_i$ do not depend on the choice of the polynomial $f$.
-
-
+where the $S_i$ are SOS matrices i.e. $S_i\in \R[\mathbf{x}]^{m_i\times m_i}$ and $\mathbf{y}^TS\textbf{y}$ 
+is a sum of squares in $\R[\textbf{x},\textbf{y}]$. Note that by our construction above, the $\Pi_i$ do not depend on the choice of the polynomial $f$.
 
 \section{Algorithm}
 Here we will present an algorithm that is the result of the paper and later explain certain concepts that we need to define in order to understand the algorithm
@@ -199,24 +212,8 @@ Although it might seem cumbersome to find all the invariants of a representation
                 = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i(\theta,\eta)\right> 
                 \rightarrow f_j(\theta) = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i^j(\theta)\right>  \]
 
-\begin{definition}
-    Let $S\in \R[\textbf{x}]^{m\times m}$ be a symmetric matrix, and $\textbf{y} = [y_1,\cdots,y_m]$ be new indeterminants. The matrix $S$ is a sum of squares (SOS) matrix if the scalar polynomial $\textbf{y}^TS\textbf{y}$ 
-    is a sum of squares in $\R[\textbf{x},\textbf{y}]$.   
-\end{definition}
-
-\begin{definition}
-    A polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
-    \[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
-is called $\vartheta$-$\vartheta_i$-equivariant.
-\end{definition}
 
 
-\begin{theorem}
-    For each irreducible representation $\vartheta_i$ the module of $\vartheta$-$\vartheta_i$-equivariants is a
-    free module over the ring in the primary invariants:
-    \[M_i = \R[\theta]\dot\{b_1^i,\cdots,b_{r_i}^i\},\]
-    where $b_{\nu}^i\in \R[\mathbf{x}]^{n_i}$ denote the elements in the module basis and $r_i$ is the rank of the module.
-\end{theorem}
 
 
 \cite{Gatermann_2004}
