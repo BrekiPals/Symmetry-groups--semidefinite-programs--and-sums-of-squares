@@ -1,0 +1,69 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Gatermann_2004}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2c62f9e10dd915bc8715963193e5795a}{%
+           family={Gatermann},
+           familyi={G\bibinitperiod},
+           given={Karin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=8c175284da0c757c59f059ff13d91dde}{%
+           family={Parrilo},
+           familyi={P\bibinitperiod},
+           given={Pablo\bibnamedelima A.},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier {BV}}%
+      }
+      \strng{namehash}{adeabf753531f33685aadf4aa1d36afe}
+      \strng{fullhash}{adeabf753531f33685aadf4aa1d36afe}
+      \strng{bibnamehash}{adeabf753531f33685aadf4aa1d36afe}
+      \strng{authorbibnamehash}{adeabf753531f33685aadf4aa1d36afe}
+      \strng{authornamehash}{adeabf753531f33685aadf4aa1d36afe}
+      \strng{authorfullhash}{adeabf753531f33685aadf4aa1d36afe}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Pure and Applied Algebra}
+      \field{month}{9}
+      \field{number}{1-3}
+      \field{title}{Symmetry groups, semidefinite programs, and sums of squares}
+      \field{volume}{192}
+      \field{year}{2004}
+      \field{pages}{95\bibrangedash 128}
+      \range{pages}{34}
+      \verb{doi}
+      \verb 10.1016/j.jpaa.2003.12.011
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016%2Fj.jpaa.2003.12.011
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016%2Fj.jpaa.2003.12.011
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
