@@ -15,18 +15,30 @@ We will look at a fundamental problem in real algebraic geometry i.e. the existe
 representation of a multivariate polynomial as a sum of squares (SOS). In other words, the
 question of finding $p_i \in \R[x], i = 1, \cdots, N$ such that
 
-\[f(x) = \sum_{i=1}^{N}(p_i(x))^2.\]
-
+\[
+    f(x) = \sum_{i=1}^{N}(p_i(x))^2,
+\]
+where $f$ is a polynomial of degree $d$ in $n$ variables $x=(x_1,\ldots,x_n)$.\\
 This problem has applications in many fields of applied mathematics, such as continuous and combinatorial optimization as well as being theoretically interesting. 
+One particular application is in minimization of multivariate polynomials
+\[
+    f^\ast=\min_{x\in\R^n}f(x),
+\]
+where $g$ is a polynomial in $n$ variables.\\
+We can relax this problem to find 
+\[
+    f^{SOS}=\max_{f(x)-\lambda \text{ is SOS}}\lambda,
+\]
+which gives us a lower bound for $g^\ast$.\\
 
-
-We will show a method that exploits symmetries in polynomials and semidefinite programming (SDP) in order to get a reduction in the problem size. 
-Two reasons are for this, firstly we get a faster solution since the time complexity of SDF has been shown to be polynomial \todo{do we have to cite this?}, 
-secondly smaller problem size give more accurate solutions may that be do to numerical conditioning or numerical errors.
-
+The methods we present exploit symmetries in polynomials and semidefinite programming (SDP) in order to get a reduction in the problem size for this latter problem. We want to do this for two reasons: Firstly, we get a faster solution since the time complexity of SDP has been shown to be polynomial \todo{do we have to cite this?}. Secondly, smaller problem size give more accurate solutions may that be due to numerical conditioning or numerical errors.\\
 
 The paper outlines the theoretical background and gives the reader examples explaining the definitions step by step in order to present an algorithm that is able to use the 
-symmetric properties of a polynomial that is invariant with respect to a certain representation and produces a solution to a semidefinite program given certain constraints.
+symmetric properties of a polynomial that is invariant with respect to a certain representation and produces a solution to a semidefinite program given certain constraints.\\
+
+Our summary is divided into multiple sections: 
+At first, we give a closer look into the ideas that make everything work. We do this by first focussing on a general symmetric SDP. Then we consider more closely the problem of representing a polynomial as a sum of squares.
+Next, we present a concrete algorithm to solve for $f^{SOS}$ and obtain a certificate of the non-negativity of $f(x)-f^{SOS}$, complete with an example. Lastly, we summarize the possible computational savings.\\%TODO: Check if this is still up to date when we print.
 
 \section{Math/Ideas/Methods/}
 \subsection*{Representation Theory}
@@ -61,8 +73,7 @@ optimization problems, which are much easier to solve as outlined below
 \[F^\ast = \min_{X\in\mathcal{L},~X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
 
 \subsection*{Invariant theory}
-Next we look at some invariant theory in order to simplify the problem even further. 
-
+To simplify the problem of finding a concrete sum of squares decomposition of $f^{SOS}$
 Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$
 variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow \mathrm{GL}(\R^n)$, i.e. $f(\textbf{x}) = f(\vartheta(g)\textbf{x})$ for all $g\in G$.
 The set of all such invariant polynomials is the invariant ring, denoted by $\R[\textbf{x}]^G$. We could jump to the conclusion that if a $f\in \R[\textbf{x}]^G$ can be written as a 
