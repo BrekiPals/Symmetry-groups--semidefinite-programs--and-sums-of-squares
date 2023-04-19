@@ -28,42 +28,38 @@ secondly smaller problem size give more accurate solutions may that be do to num
 The paper outlines the theoretical background and gives the reader examples explaining the definitions step by step in order to present an algorithm that is able to use the 
 symmetric properties of a polynomial that is invariant with respect to a certain representation and produces a solution to a semidefinite program given certain constraints.
 
-\subsection*{The problem}
+\section{Math/Ideas/Methods/}
 
 Given a polynomial that has symmetries we want to use symmetry reduction techniques to reduce our problem to a smaller semidefinite program.
 
 We will use representation theory to define a good notion of symmetries. In particular we will look at representations
-$\sigma:G\rightarrow \mathrm{Aut}(S^N)$ that preserve $\mathcal{S}_+^N$ and are \textit{induced} by a representation $\rho:G\rightarrow \mathrm{GL}(\R^N)$, 
+$\sigma:G\rightarrow \mathrm{Aut}(S^N)$ that preserve $\mathcal{S}_+^N$ and are \textit{induced} by a representation $\rho:G\rightarrow \mathrm{O}(N)\subseteq\mathrm{GL}(\R^N)$, 
 that is 
 \begin{itemize}
     \item $\sigma(g)(\mathcal{S}_+^N)\subseteq \mathcal{S}_+^N$ for all $g\in G$, and
     \item $\sigma(g)(X) := \rho(g)^TX\rho(g)$ for all $X\in \mathcal{S} , g\in G.$
 \end{itemize}
 
-These representation will be of this kind for most practical instances. The paper shows that with a convenient change of coordinates every 
-invariant matrix will be block diagonal enabling us to go from one big problem to a couple of smaller ones. 
-\begin{definition}
-    Given a finite group $G$, and an associated linear representation $\sigma:G\rightarrow \mathrm{Aut}(\mathcal{S}^N)$, a semidefinite
-    optimization problem of the form $F^\ast:=\min_{\mathcal{L}\cap \mathcal{S}_+^N}\left<C,X\right>.$ is called invariant with 
-    respect to $\sigma$, if the set of feasible matrices $\mathcal{L}\cap \mathcal{S}_+^N$ and the cost function $F(X)=\left<C,X\right>$ are invariant with respect to $\sigma$
-\end{definition}
-\begin{definition}
-    We define the fixed-point subspace of $\mathcal{S}^N$ as the subspace of all invariant matrices, 
-    \[\mathcal{F} := \{X\in\mathcal{S}^N | X= \sigma(g)(X)\,\,\, \forall g \in G\}\] 
-    and the associated semidefinite program 
-    \[F_\sigma := \min_{X\in\mathcal{F}\cup\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right>\]
-\end{definition}
+If we have a \textit{symmetric} semidefinite program 
+\[
+    F^\ast=\min_{X\in\mathcal{L}\cap\mathcal{S}_+^N}F(X),
+\]
+which is to say that $F$ is $\sigma$-invariant and $\mathcal{L}$ is $\sigma$-stable, then we can always find a minimizer $X^\ast$ inside the \textit{fixed-point subspace} 
+\[
+    \mathcal{F} := \{X\in\mathcal{S}^N | X= \sigma(g)(X)\,\,\, \forall g \in G\}
+\]
 
-The paper proves that the solution a SDP which is invariant with respect to a linear representation $\sigma$ of the kind we have discussed and it's sigma SDP outlined above give the same solution. 
 Thus we can restrict our set of feasible matrices from $\mathcal{L}\cap \mathcal{S}_+^N$ to $ X\in\mathcal{F}\cup\mathcal{L}\cap \mathcal{S}_+^N$ making the problem simpler.
 
-Furthermore every linear representation of a finite group $G$ has a canonical decomposition as a direct sum of irreducible representations, i.e.
+With a convenient change of coordinates into a \textit{symmetry-adapted} basis every invariant matrix will be block diagonal. This comes from the fact that every linear representation of a finite group $G$ over $\R$ has a canonical decomposition as a direct sum of irreducible representations, i.e.
 \[\rho = m_1\vartheta_i\oplus m_2\vartheta_2 \oplus \cdots \oplus m_h\vartheta_h.\]
-The paper showed that with these constraints we can actually find a change of coordinates so that all the matrices 
-in the SDP have block diagonal form, the problem therefore collapses into a collection of smaller 
-optimization problems, which are much easier to solve as outlined below 
-\[F = \min_{X\in\mathcal{L},~X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
+together with Schur's lemma.
 
+The problem therefore collapses into a collection of smaller 
+optimization problems, which are much easier to solve as outlined below 
+\[F^\ast = \min_{X\in\mathcal{L},~X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
+
+\subsection*{Invariant theory}
 Next we look at some invariant theory in order to simplify the problem even further. 
 
 Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$
@@ -160,9 +156,9 @@ Let's execute algorithm I:
     
     \item Rewriting our symmetry-adapted basis in terms of $\theta$ we compute $P_i=\sum_{j=1}^{n_i} v_{ij}v_{ij}^T$ to be
     \begin{align*}
-        P_1&=\begin{pmatrix}1&\theta_1\\\theta_1&\theta_1^2\end{pmatrix}\\
+        P_1&=\begin{pmatrix}1&\theta_1\\\theta_1&\theta_1^2\end{pmatrix}&
         P_3&=\begin{pmatrix}\theta_2\end{pmatrix}\\
-        P_4&=\begin{pmatrix}\theta_1^2-4\theta_2\end{pmatrix}\\
+        P_4&=\begin{pmatrix}\theta_1^2-4\theta_2\end{pmatrix}&
         P_5&=\begin{bmatrix}\Pi_5&\theta_1\Pi_5\\\theta_1\Pi_5&\theta_1^2\Pi_5\end{bmatrix}
     \end{align*}
     where $\Pi_5=\begin{pmatrix}\theta_1&\theta_1^2-2\theta_2\\\theta_1^2-2\theta_2&\theta_1(\theta_1^2-3\theta_2)\end{pmatrix}$. In particular, $\Pi_1=1$,  $\Pi_3=P_3$ and $\Pi_4=P_4$.\\
@@ -228,5 +224,5 @@ is called $\vartheta$-$\vartheta_i$-equivariant.
 
 Hello World
 
-
+%\printbibliography
 \end{document}
