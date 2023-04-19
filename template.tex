@@ -10,7 +10,7 @@
 
 \maketitle
 
-\section{Introduction}
+\section*{Introduction}
 We will look at a fundamental problem in real algebraic geometry i.e. the existence and computation of a
 representation of a multivariate polynomial as a sum of squares (SOS). In other words, the
 question of finding $p_i \in \R[x], i = 1, \cdots, N$ such that
@@ -27,9 +27,9 @@ One particular application is in minimization of multivariate polynomials
 where $g$ is a polynomial in $n$ variables.\\
 We can relax this problem to find 
 \[
-    f^{SOS}=\max_{f(x)-\lambda \text{ is SOS}}\lambda,
+    f^{SOS}=\max_{f(x)-\lambda \in \Sigma}\lambda,
 \]
-which gives us a lower bound for $g^\ast$, and is efficiently solvable by its well-known representation as a semidefinite program (SDP).\\
+which gives us a lower bound for $f^\ast$, and is efficiently solvable by its well-known representation as a semidefinite program (SDP).\\
 
 The methods we present exploit symmetries in polynomials and semidefinite programming in order to get a reduction in the problem size for this latter problem. 
 The main ideas are to
@@ -48,7 +48,6 @@ Our summary is divided into multiple sections:
 At first, we take a closer look at the ideas that make everything work. We do this by first focussing on a general invariant SDP, where we can make simplifications using the representation theory of finite groups. Then we consider more closely the problem of representing a polynomial as a sum of squares, where the methodology is closer to invariant theory.
 Next, we present a concrete algorithm to solve for $f^{SOS}$ and obtain a certificate of the non-negativity of $f(x)-f^{SOS}$, complete with an example. Lastly, we summarize the possible computational savings.\\%TODO: Check if this is still up to date when we print.
 
-\section{Math/Ideas/Methods/}
 \subsection*{Representation Theory}
 
 Given a polynomial that has symmetries we want to use symmetry reduction techniques to reduce our problem to a smaller semidefinite program.
@@ -82,19 +81,13 @@ On the level of vector spaces the we have a corresponding composition
 The problem therefore collapses into a collection of smaller 
 optimization problems, which are much easier to solve as outlined below 
 \[F^\ast = \min_{X\in\mathcal{L},~X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>.\]
-
-
+We end this section with a road map of the section:
+\[\min_{x\in\R^n}f(\mathbf{x}) \rightarrow \max_{f(\mathbf{x})-\lambda\in \Sigma} \lambda \rightarrow\min_{X\in\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow 
+\min_{X\in\mathcal{F}\cap\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow
+\min_{X\in\mathcal{L}, X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>\]
 \subsection*{Invariant theory}
-<<<<<<< HEAD
-We will now look at some invariant theory in order to simplify the problem even further. 
+We will now look at some invariant theory in order to compute everything in invariant polynomials instead of the original variables.
 
-A polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
-\[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
-is called $\vartheta$-$\vartheta_i$-equivariant.
-
-=======
-To simplify the problem of finding a concrete sum of squares decomposition of $f^{SOS}$
->>>>>>> 9d647425ae922b9be8e9c0c31c071778531f6330
 Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$
 variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow \mathrm{GL}(\R^n)$, i.e. $f(\textbf{x}) = f(\vartheta(g)\textbf{x})$ for all $g\in G$.
 The set of all such invariant polynomials is the invariant ring, denoted by $\R[\textbf{x}]^G$. We could jump to the conclusion that if a $f\in \R[\textbf{x}]^G$ can be written as a 
@@ -116,7 +109,10 @@ with $\tilde{P_i} \in (\tilde{T})^{m_i\times m_i}$, where $\tilde{T} = \sum_{i=1
 In practice very often the group representations are so-called reflection groups. In this situation the invariant ring is 
 isomorphic to a polynomial ring and the secondary invariants are not needed. %TODO: This sentence should go somewhere else, but I haven't figured out where.
 
-Next we want to exploit the algebraic structure of the module of equivariants, that is for each irreducible representation $\vartheta_i$, tha module $M_i$ of $\vartheta$-$\vartheta_i$-equivariants is a free module over the ring in the primary invariants:
+Next we want we introduce another symmetry concept. We say that a polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
+\[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
+is an $\vartheta$-$\vartheta_i$-equivariant. The set $M_i$ of $\vartheta$-$\vartheta_i$-equivariant forms is a finitely-generated module over
+the invariant ring $\R[\mathbf{x}]^G$. We want to exploit the algebraic structure of the module, by writing 
 \[M_i = \R[\theta]\dot\{b_1^i,\cdots,b_{r_i}^i\},\]
 where $b_{\nu}^i\in \R[\mathbf{x}]^{n_i}$ denote the elements in the module basis and $r_i$ is the rank of the module.  In addition to this we choose a special vector space basis $v_i(\mathbf{x})$ of $V_i$ determined by the module basis, such that
 \[\begin{bmatrix}v_{i1}\\ \vdots \\ v_{in_i}\end{bmatrix}= \left\{1,\theta_1,\cdots, \theta_n,\theta_1^2,\cdots\right\}\cdot\left\{b_1^i,\cdots,b_{r_i}^i\right\}.\]
@@ -129,9 +125,16 @@ By this change of coordinates we can assume that $\tilde{P}_i$ has a special for
 where the $S_i$ are SOS matrices i.e. $S_i\in \R[\mathbf{x}]^{m_i\times m_i}$ and $\mathbf{y}^TS\textbf{y}$ 
 is a sum of squares in $\R[\textbf{x},\textbf{y}]$. Note that by our construction above, the $\Pi_i$ do not depend on the choice of the polynomial $f$.
 
-\section{Algorithm}
-Here we will present an algorithm that is the result of the paper and later explain certain concepts that we need to define in order to understand the algorithm
+Once again we conclude the section with a road map:
 
+\[f(\mathbf{x}) = \sum_{i= 1}^{r} (p_i(\mathbf{x}))^2 
+                = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right> 
+                = \sum_{i=1}^{h}\left<Q_i,\tilde{P_i}(\mathbf{x})\right>
+                = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i(\theta,\eta)\right> 
+                \rightarrow f_j(\theta) = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i^j(\theta)\right> . \]
+
+\section*{Algorithm}
+Here we will present an outline of two algorithms presented in the paper
 \subsection*{Algorithm I}
 
 
@@ -166,7 +169,7 @@ use the outputs for finding solution for
 all polynomials that are invariant with respect to this particular representation.
 
 
-\section{Example}
+\section*{Example}
 We recap an example from the paper:\\
 Let $D_4=\left<r,s\mid r^4=s^2=(rs)^2=1\right>$ be the dihedral group of order $8$, generated by a reflection $s$ and a rotation $r$ by $\pi/2$. We let $D_4$ act on $\R[x,y]$ by 
 \begin{align*}
@@ -223,22 +226,8 @@ and note that this is $G$-invariant, thus we can apply algorithm II:
     \item By solving the SDP's, we find that $f^{SOS}=-\frac{3825}{4096}$.
 \end{enumerate}
 
-\section{Conclusion}
-Although it might seem cumbersome to find all the invariants of a representation.... 
-
-
-
-\[ \min_{X\in\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow 
-\min_{X\in\mathcal{F}\cap\mathcal{L}\cap \mathcal{S}_+^N } \left<C,X\right> \rightarrow
-\min_{X\in\mathcal{L}, X_i \in \mathcal{S}_+^{m_i} }\sum_{i=1}^{h} n_i\left<C_i,X_i\right>\]
-\[f(\mathbf{x}) = \sum_{i= 1}^{r} (p_i(\mathbf{x}))^2 
-                = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right> 
-                = \sum_{i=1}^{h}\left<Q_i,\tilde{P_i}(\mathbf{x})\right>
-                = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i(\theta,\eta)\right> 
-                \rightarrow f_j(\theta) = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i^j(\theta)\right>  \]
-
-
-
+\section*{Conclusion}
+Although it might seem cumbersome to find all the invariants of a representation and to work out basis for invariants of the full invariant ring of polynomials the computational time saved are quite significant. The paper showed an example how the methods described above were able to reduce a SDP problem of dimension $286\time286$ to five coupled smaller ones, of dimension $44,26,24,23$ and $5$ and another SDP problem of dimension $715\times715$ to many coupled smaller ones, of dimension $55$,$10$ ($45$ problems) and $1$ ($210$ problems) an obvious reduction in computation.
 
 
 \cite{Gatermann_2004}
