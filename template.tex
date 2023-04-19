@@ -16,9 +16,9 @@ representation of a multivariate polynomial as a sum of squares (SOS). In other 
 question of finding $p_i \in \R[x], i = 1, \cdots, N$ such that
 
 \[
-    f(x) = \sum_{i=1}^{N}(p_i(x))^2,
+    f(\mathbf{x}) = \sum_{i=1}^{N}(p_i(\mathbf{x}))^2,
 \]
-where $f$ is a polynomial of degree $d$ in $n$ variables $x=(x_1,\ldots,x_n)$.\\
+where $f$ is a polynomial of degree $d$ in $n$ variables $\mathbf{x}=(x_1,\ldots,x_n)$.\\
 This problem has applications in many fields of applied mathematics, such as continuous and combinatorial optimization as well as being theoretically interesting. 
 One particular application is in minimization of multivariate polynomials
 \[
@@ -27,7 +27,7 @@ One particular application is in minimization of multivariate polynomials
 where $f$ is a polynomial in $n$ variables.\\
 We can relax this problem to find 
 \[
-    f^{SOS}=\max_{f(x)-\lambda \in \Sigma}\lambda,
+    f^{SOS}=\max_{f(\mathbf{x})-\lambda \in \Sigma}\lambda,
 \]
 which gives us a lower bound for $f^\ast$, and is efficiently solvable by its well-known representation as a semidefinite program (SDP).\\
 
@@ -46,7 +46,7 @@ symmetric properties of a polynomial that is invariant with respect to a certain
 
 Our summary is divided into multiple sections: 
 At first, we take a closer look at the ideas that make everything work. We do this by first focussing on a general invariant SDP, where we can make simplifications using the representation theory of finite groups. Then we consider more closely the problem of representing a polynomial as a sum of squares, where the methodology is closer to invariant theory.
-Next, we present a concrete algorithm to solve for $f^{SOS}$ and obtain a certificate of the non-negativity of $f(x)-f^{SOS}$, complete with an example. Lastly, we summarize the possible computational savings.\\%TODO: Check if this is still up to date when we print.
+Next, we present a concrete algorithm to solve for $f^{SOS}$ and obtain a certificate of the non-negativity of $f(\mathbf{x})-f^{SOS}$, complete with an example. Lastly, we summarize the possible computational savings.\\%TODO: Check if this is still up to date when we print.
 
 \subsection*{Representation Theory}
 
@@ -88,7 +88,7 @@ We end this section with a road map of the section:
 \subsection*{Invariant theory}
 We will now look at some invariant theory in order to compute everything in invariant polynomials instead of the original variables.
 
-A polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
+A polynomial mapping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
 \[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
 is called $\vartheta$-$\vartheta_i$-equivariant.
 
@@ -111,18 +111,17 @@ where $\theta_i(\mathbf{x})$, $\eta_i(\mathbf{x})$ are called primary and second
 with $\tilde{P_i} \in (\tilde{T})^{m_i\times m_i}$, where $\tilde{T} = \sum_{i=1}^{h}\eta_j\R[\theta]$ and the $Q_i$ are as always positive semidefinite.\\
 
 In practice very often the group representations are so-called reflection groups. In this situation the invariant ring is 
-isomorphic to a polynomial ring and the secondary invariants are not needed. %TODO: This sentence should go somewhere else, but I haven't figured out where.
-
-Next we want we introduce another symmetry concept. We say that a polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
+isomorphic to a polynomial ring and the secondary invariants are not needed. 
+Next we want to introduce another symmetry concept. We say that a polynomial mapping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
 \[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
 is an $\vartheta$-$\vartheta_i$-equivariant. The set $M_i$ of $\vartheta$-$\vartheta_i$-equivariant forms is a finitely-generated module over
 the invariant ring $\R[\mathbf{x}]^G$. We want to exploit the algebraic structure of the module, by writing 
-\[M_i = \R[\theta]\dot\{b_1^i,\cdots,b_{r_i}^i\},\]
+\[M_i = \R[\theta]\cdot\{b_1^i,\cdots,b_{r_i}^i\},\]
 where $b_{\nu}^i\in \R[\mathbf{x}]^{n_i}$ denote the elements in the module basis and $r_i$ is the rank of the module.  In addition to this we choose a special vector space basis $v_i(\mathbf{x})$ of $V_i$ determined by the module basis, such that
 \[\begin{bmatrix}v_{i1}\\ \vdots \\ v_{in_i}\end{bmatrix}= \left\{1,\theta_1,\cdots, \theta_n,\theta_1^2,\cdots\right\}\cdot\left\{b_1^i,\cdots,b_{r_i}^i\right\}.\]
 
 
-By this change of coordinates we can assume that $\tilde{P}_i$ has a special form where each $r_i\times r_i$ subblock is a monomial multiple of the first \textit{principal} $r_i\times r_i$ subblock $\Pi_i$. Then $\tilde{f}$ can be written as 
+By this change of coordinates we can assume that $\tilde{P}_i$ has a special form where each $r_i\times r_i$ subblock is a monomial multiple of the first principal $r_i\times r_i$ subblock $\Pi_i$. Then $\tilde{f}$ can be written as 
 \[
     \tilde{f}(\theta, \eta)=\sum_{i=1}^h\left<S_i(\theta),\Pi_i(\theta,\eta)\right>,
 \]
@@ -133,7 +132,7 @@ Once again we conclude the section with a road map:
 
 \[f(\mathbf{x}) = \sum_{i= 1}^{r} (p_i(\mathbf{x}))^2 
                 = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right> 
-                = \sum_{i=1}^{h}\left<Q_i,\tilde{P_i}(\mathbf{x})\right>
+                = \sum_{i=1}^{h}\left<Q_i,\tilde{P_i}(\theta,\eta)\right>
                 = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i(\theta,\eta)\right> 
                 \rightarrow f_j(\theta) = \sum_{i=1}^{h}\left<S_i(\theta),\Pi_i^j(\theta)\right> . \]
 
