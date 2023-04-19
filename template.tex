@@ -98,7 +98,7 @@ sum of squares $f(\textbf{x}) =\sum_{i=1}^{h}(p_i(\textbf{x}))^2$, then the poly
 use a technique that allows us to couple together squares so they decompose into invariant components.
 
 First we note that if we can write $f$ as a sum of squares then we can express it as $f(\textbf{x}) = Y^TAY =\left<A,YY^T\right>$, where $Y=\begin{pmatrix}1\\x_1\\\vdots\\x_n^d\end{pmatrix}$ is a vector of monomials and $A$ is a positive semidefinite matrix. 
-If we further assume that $f\in \R[\mathbf{x}]^G$ is an invariant polynomial, then $A$ will be an invariant matrix and using the methods described in the previous section we can actually write it as 
+If we further assume that $f\in \R[\mathbf{x}]^G$ is an invariant polynomial, then $A$ will be an invariant matrix and using the methods described in the previous section we can rewrite $f$ as 
 \[f(\textbf{x}) = \sum_{i=1}^{h}\left<Q_i,P_i(\mathbf{x})\right>,\]
 with $P_i\in (\R[\mathbf{x}]^G)^{m_i\times m_i}$
 and the $Q_i$ are as always positive semidefinite.  
@@ -114,8 +114,8 @@ In practice very often the group representations are so-called reflection groups
 isomorphic to a polynomial ring and the secondary invariants are not needed. 
 Next we want to introduce another symmetry concept. We say that a polynomial mapping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
 \[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
-is an $\vartheta$-$\vartheta_i$-equivariant. The set $M_i$ of $\vartheta$-$\vartheta_i$-equivariants forms is a finitely-generated module over
-the invariant ring $\R[\mathbf{x}]^G$. We want to exploit the algebraic structure of the module, by writing 
+is an $\vartheta$-$\vartheta_i$-equivariant. The set $M_i$ of $\vartheta$-$\vartheta_i$-equivariants is a finitely-generated free module over
+the invariant ring $\R[\mathbf{x}]^G$. We want to exploit the algebraic structure of the module by writing 
 \[M_i = \R[\theta]\cdot\{b_1^i,\cdots,b_{r_i}^i\},\]
 where $b_{\nu}^i\in \R[\mathbf{x}]^{n_i}$ denote the elements in the module basis and $r_i$ is the rank of the module.  In addition to this we choose a special vector space basis $v_i(\mathbf{x})$ of $V_i$ determined by the module basis, such that
 \[\begin{bmatrix}v_{i1}\\ \vdots \\ v_{in_i}\end{bmatrix}= \left\{1,\theta_1,\cdots, \theta_n,\theta_1^2,\cdots\right\}\cdot\left\{b_1^i,\cdots,b_{r_i}^i\right\}.\]
