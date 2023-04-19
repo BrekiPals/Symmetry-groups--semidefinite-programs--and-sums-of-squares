@@ -24,12 +24,12 @@ One particular application is in minimization of multivariate polynomials
 \[
     f^\ast=\min_{x\in\R^n}f(x),
 \]
-where $g$ is a polynomial in $n$ variables.\\
+where $f$ is a polynomial in $n$ variables.\\
 We can relax this problem to find 
 \[
     f^{SOS}=\max_{f(x)-\lambda \text{ is SOS}}\lambda,
 \]
-which gives us a lower bound for $g^\ast$, and is efficiently solvable by its well-known representation as a semidefinite program (SDP).\\
+which gives us a lower bound for $f^\ast$, and is efficiently solvable by its well-known representation as a semidefinite program (SDP).\\
 
 The methods we present exploit symmetries in polynomials and semidefinite programming in order to get a reduction in the problem size for this latter problem. 
 The main ideas are to
@@ -85,16 +85,12 @@ optimization problems, which are much easier to solve as outlined below
 
 
 \subsection*{Invariant theory}
-<<<<<<< HEAD
 We will now look at some invariant theory in order to simplify the problem even further. 
 
 A polynomial maping $f:\R^n\rightarrow \R^{n_i}$ with $f_i\in\R[\mathbf{x}]$ and 
 \[ f(\vartheta(g)\mathbf{x}) =\vartheta_i f(\mathbf{x})\quad \forall g\in G, \]
 is called $\vartheta$-$\vartheta_i$-equivariant.
 
-=======
-To simplify the problem of finding a concrete sum of squares decomposition of $f^{SOS}$
->>>>>>> 9d647425ae922b9be8e9c0c31c071778531f6330
 Assume we are interested in finding the sum of squares decomposition of a polynomial $f(\textbf{x})$ of degree $2d$ in $n$
 variables which is invariant with respect to a linear representation $\vartheta:G\rightarrow \mathrm{GL}(\R^n)$, i.e. $f(\textbf{x}) = f(\vartheta(g)\textbf{x})$ for all $g\in G$.
 The set of all such invariant polynomials is the invariant ring, denoted by $\R[\textbf{x}]^G$. We could jump to the conclusion that if a $f\in \R[\textbf{x}]^G$ can be written as a 
